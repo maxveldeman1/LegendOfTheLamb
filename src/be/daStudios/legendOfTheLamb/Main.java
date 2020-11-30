@@ -1,6 +1,8 @@
 package be.daStudios.legendOfTheLamb;
 
-public class Main {
+import be.daStudios.legendOfTheLamb.monsters.Monsters;
+import be.daStudios.legendOfTheLamb.monsters.goblins.GoblinFighter;
 
+public class Main {
 
 }
