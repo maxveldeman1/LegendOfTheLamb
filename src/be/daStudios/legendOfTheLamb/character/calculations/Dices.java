@@ -1,4 +1,4 @@
-package be.daStudios.legendOfTheLamb.character.races;
+package be.daStudios.legendOfTheLamb.character.calculations;
 
 public enum Dices {
     D2(2),
