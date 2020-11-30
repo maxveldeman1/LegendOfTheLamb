@@ -1,8 +1,17 @@
 package be.daStudios.legendOfTheLamb;
 
-import be.daStudios.legendOfTheLamb.monsters.Monsters;
-import be.daStudios.legendOfTheLamb.monsters.goblins.GoblinFighter;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
+
+    public static void main(String[] args) {
+
+
+
+
+    }
 
 }
