@@ -1,13 +1,11 @@
 package be.daStudios.legendOfTheLamb.character.classes;
 
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
+import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.armour.ChainMail;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Fighter {
+public class Fighter implements Classes{
 
     private String description = "Fighter";
     private int baseArmour = 8;
@@ -15,7 +13,7 @@ public class Fighter {
     private int constitution = 1;
     Dices lifeDice = Dices.D12;
 //    Shield shield = new Shield();
-    ChainMail chainMail = new ChainMail();
+    Armour chainMail = new ChainMail();
 //    BackPack backPack = new BackPack();
     Integer coins = 15;
     Sword sword = new Sword();
@@ -37,7 +35,7 @@ public class Fighter {
         return lifeDice;
     }
 
-    public ChainMail getChainMail() {
+    public Armour getChainMail() {
         return chainMail;
     }
 

@@ -1,6 +1,6 @@
 package be.daStudios.legendOfTheLamb.items.armour;
 
-public class ChainMail {
+public class ChainMail implements Armour{
     private String description = "Many small rings make one big strong jacket.";
     private int ArmourBase = 10;
     int AC = 10;

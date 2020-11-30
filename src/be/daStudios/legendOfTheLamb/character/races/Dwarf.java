@@ -2,11 +2,11 @@ package be.daStudios.legendOfTheLamb.character.races;
 
 import be.daStudios.legendOfTheLamb.character.Player;
 
-public class Dwarf {
+public class Dwarf implements Race{
     private String description = "Dwarf";
     private int hitPoints;
     private int armourClass;
-    private final int speed = 5;
+    private final int baseSpeed = 5;
     private int initiative;
     // Strength/Constitution/Dexterity/Wisdom/Intelligence/Charisma.
     private final int[] abilities = {18,16,14,13,11,8};
@@ -25,8 +25,8 @@ public class Dwarf {
     }
 
 
-    public int getSpeed() {
-        return speed;
+    public int getBaseSpeed() {
+        return baseSpeed;
     }
 
 

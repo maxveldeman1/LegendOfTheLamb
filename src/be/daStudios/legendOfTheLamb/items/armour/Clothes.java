@@ -1,6 +1,6 @@
 package be.daStudios.legendOfTheLamb.items.armour;
 
-public class Clothes {
+public class Clothes implements Armour{
     private String description = "A linen or woolen tunic that will rip with the slightest touch.";
     private int armourBase = 4;
     private int AC = 4;
