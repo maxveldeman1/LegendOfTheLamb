@@ -11,4 +11,5 @@ public class Troll extends Monsters {
         int combatRating = 4;
         super.setCombatRating(combatRating);
     }
+
 }

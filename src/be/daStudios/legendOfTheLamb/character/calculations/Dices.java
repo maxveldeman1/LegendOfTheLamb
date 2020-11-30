@@ -1,5 +1,7 @@
 package be.daStudios.legendOfTheLamb.character.calculations;
 
+import java.util.Random;
+
 public enum Dices {
     D2(2),
     D4(4),
@@ -12,9 +14,9 @@ public enum Dices {
 
     public final int maxThrow;
 
-    private Dices(int maxThrow) {
+    Dices(int maxThrow) {
         this.maxThrow = maxThrow;
 
-
     }
+
 }
