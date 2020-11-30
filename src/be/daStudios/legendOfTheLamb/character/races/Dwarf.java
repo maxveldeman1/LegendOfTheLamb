@@ -37,4 +37,5 @@ public class Dwarf {
     public int[] getAbilities() {
         return abilities;
     }
+
 }

@@ -33,6 +33,4 @@ public class Human {
         return this.getInitiative();
     }
 
-
-
 }
