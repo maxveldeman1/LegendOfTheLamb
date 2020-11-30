@@ -8,6 +8,8 @@ public class DiceThrow {
     public static int diceThrow(Dices dices) {
         Random random = new Random();
         return random.nextInt(dices.maxThrow);
+
     }
+
 
 }

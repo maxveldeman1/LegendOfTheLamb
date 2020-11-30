@@ -1,5 +1,6 @@
 package be.daStudios.legendOfTheLamb.monsters.animal;
 
+import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 import be.daStudios.legendOfTheLamb.monsters.Monsters;
 
 public class BugBear extends Monsters {
@@ -10,5 +11,7 @@ public class BugBear extends Monsters {
         super.setHitPoints(hitPoints);
         int combatRating = 3;
         super.setCombatRating(combatRating);
+        Sword sword = new Sword();
+
     }
 }
