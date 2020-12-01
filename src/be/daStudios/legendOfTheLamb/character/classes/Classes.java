@@ -9,21 +9,22 @@ import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
 import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
+import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
 public interface Classes {
     String getDescription();
     int getBaseArmour();
     int getStrength();
     Dices getLifeDice();
-    Item getChainMail();
+    Armour getChainMail();
     int getGold();
-    Item getSword();
+    Weapon getSword();
     int getWisdom();
     int getCharisma();
-    Item getClothes();
-    Item getDagger();
+    Armour getClothes();
+    Weapon getDagger();
     int getDexterity();
     int getConstitution();
-    Item getLeatherArmour();
+    Armour getLeatherArmour();
     BackPacks getBackPack();
 }

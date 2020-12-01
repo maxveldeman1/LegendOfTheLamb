@@ -11,6 +11,7 @@ import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
 import be.daStudios.legendOfTheLamb.items.packs.ClericalBackPack;
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
+import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
 public class Healer implements Classes{
     private String description = "Healer";
@@ -19,10 +20,10 @@ public class Healer implements Classes{
     private int charisma = 1;
     private Dices lifeDice = Dices.D6;
     //    HolySymbol Item = new HolySymbol();
-    private Item clothes = new Clothes();
+    private Armour clothes = new Clothes();
     private ClericalBackPack clericBackPack = new ClericalBackPack();
     private int gold = 15;
-    private Item dagger = new Dagger();
+    private Weapon dagger = new Dagger();
 
     public String getDescription() {
         return description;
@@ -50,11 +51,11 @@ public class Healer implements Classes{
     }
 
     @Override
-    public Item getChainMail() {
+    public Armour getChainMail() {
         return null;
     }
 
-    public Item getClothes() {
+    public Armour getClothes() {
         return clothes;
     }
 
@@ -63,11 +64,11 @@ public class Healer implements Classes{
     }
 
     @Override
-    public Item getSword() {
+    public Weapon getSword() {
         return null;
     }
 
-    public Item getDagger() {
+    public Weapon getDagger() {
         return dagger;
     }
 
@@ -82,7 +83,7 @@ public class Healer implements Classes{
     }
 
     @Override
-    public Item getLeatherArmour() {
+    public Armour getLeatherArmour() {
         return null;
     }
 

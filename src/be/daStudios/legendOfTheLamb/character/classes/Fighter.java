@@ -10,6 +10,7 @@ import be.daStudios.legendOfTheLamb.items.packs.BackPack;
 import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
+import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
 public class Fighter implements Classes{
 
@@ -19,10 +20,10 @@ public class Fighter implements Classes{
     private final int constitution = 1;
     private Dices lifeDice = Dices.D12;
 //    Shield shield = new Shield();
-    private Item chainMail = new ChainMail();
+    private Armour chainMail = new ChainMail();
     private BackPack backPack = new BackPack();
     private int gold = 15;
-    private Item sword = new Sword();
+    private Weapon sword = new Sword();
 
 
     public String getDescription() {
@@ -41,7 +42,7 @@ public class Fighter implements Classes{
         return lifeDice;
     }
 
-    public Item getChainMail() {
+    public Armour getChainMail() {
         return chainMail;
     }
 
@@ -49,7 +50,7 @@ public class Fighter implements Classes{
         return gold;
     }
 
-    public Item getSword() {
+    public Weapon getSword() {
         return sword;
     }
 
@@ -64,12 +65,12 @@ public class Fighter implements Classes{
     }
 
     @Override
-    public Item getClothes() {
+    public Armour getClothes() {
         return null;
     }
 
     @Override
-    public Item getDagger() {
+    public Weapon getDagger() {
         return null;
     }
 
@@ -84,7 +85,7 @@ public class Fighter implements Classes{
     }
 
     @Override
-    public Item getLeatherArmour() {
+    public Armour getLeatherArmour() {
         return null;
     }
 
