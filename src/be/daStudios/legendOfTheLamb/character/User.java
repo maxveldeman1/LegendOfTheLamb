@@ -92,12 +92,12 @@ public class User {
         this.armour = armour;
     }
 
-    public int getExperienceLevel() {
+    public int getExperience() {
         return experience;
     }
 
-    public void setExperienceLevel(int experienceLevel) {
-        this.experience = experienceLevel;
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
     public void setClasses(Classes classes) {
@@ -122,6 +122,10 @@ public class User {
 
     public Race getRace() {
         return race;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public int getLevel() {

@@ -17,7 +17,7 @@ public class Ranger implements Classes{
     //    Bow bow = new Bow();
     LeatherArmour leatherArmour = new LeatherArmour();
     //    BackPack backPack = new BackPack();
-    Integer coins = 10;
+    private int gold = 10;
     Sword sword = new Sword();
 
     public String getDescription() {
@@ -54,8 +54,8 @@ public class Ranger implements Classes{
         return leatherArmour;
     }
 
-    public Integer getCoins() {
-        return coins;
+    public int getGold() {
+        return gold;
     }
 
     public Sword getSword() {

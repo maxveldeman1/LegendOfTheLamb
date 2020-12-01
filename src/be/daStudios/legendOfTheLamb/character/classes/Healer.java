@@ -17,7 +17,7 @@ public class Healer implements Classes{
     //    HolySymbol holySymbol = new HolySymbol();
     Clothes clothes = new Clothes();
     //    ClericBackPack clericBackPack = new ClericBackPack();
-    Integer coins = 15;
+    private int gold = 15;
     Dagger dagger = new Dagger();
 
     public String getDescription() {
@@ -54,8 +54,8 @@ public class Healer implements Classes{
         return clothes;
     }
 
-    public Integer getCoins() {
-        return coins;
+    public int getGold() {
+        return gold;
     }
 
     @Override

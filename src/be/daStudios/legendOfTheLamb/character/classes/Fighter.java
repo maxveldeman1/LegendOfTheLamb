@@ -18,7 +18,7 @@ public class Fighter implements Classes{
 //    Shield shield = new Shield();
     Armour chainMail = new ChainMail();
 //    BackPack backPack = new BackPack();
-    Integer coins = 15;
+    private int gold = 15;
     Sword sword = new Sword();
 
 
@@ -42,8 +42,8 @@ public class Fighter implements Classes{
         return chainMail;
     }
 
-    public Integer getCoins() {
-        return coins;
+    public int getGold() {
+        return gold;
     }
 
     public Sword getSword() {

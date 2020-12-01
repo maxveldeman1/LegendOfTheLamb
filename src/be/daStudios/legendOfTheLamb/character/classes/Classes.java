@@ -14,7 +14,7 @@ public interface Classes {
     int getStrength();
     Dices getLifeDice();
     Armour getChainMail();
-    Integer getCoins();
+    int getGold();
     Sword getSword();
     int getWisdom();
     int getCharisma();
