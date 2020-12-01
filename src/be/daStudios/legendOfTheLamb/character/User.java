@@ -3,6 +3,7 @@ package be.daStudios.legendOfTheLamb.character;
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 import be.daStudios.legendOfTheLamb.character.classes.Classes;
 import be.daStudios.legendOfTheLamb.character.races.Race;
+import be.daStudios.legendOfTheLamb.items.Item;
 import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
 import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
@@ -19,8 +20,8 @@ public class User {
     private Race race;
     //// Strength/Constitution/Dexterity/Wisdom/Intelligence/Charisma.
     private int[] abilities;
-    private Weapon weapon;
-    private Armour armour;
+    private Item weapon;
+    private Item armour;
     private int experience = 0;
     private int level = 1;
     private Dices lifeDice;
@@ -41,11 +42,11 @@ public class User {
         return this.gold;
     }
 
-    public void setWeapon(Weapon weapon) {
+    public void setWeapon(Item weapon) {
         this.weapon = weapon;
     }
 
-    public Weapon getWeapon() {
+    public Item getWeapon() {
         return this.weapon;
     }
 
@@ -112,11 +113,11 @@ public class User {
         this.abilities = abilities;
     }
 
-    public Armour getArmour() {
+    public Item getArmour() {
         return armour;
     }
 
-    public void setArmour(Armour armour) {
+    public void setArmour(Item armour) {
         this.armour = armour;
     }
 
