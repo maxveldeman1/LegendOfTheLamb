@@ -1,11 +1,14 @@
 package be.daStudios.legendOfTheLamb.character.classes;
 
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
+import be.daStudios.legendOfTheLamb.items.Item;
 import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.armour.ChainMail;
 import be.daStudios.legendOfTheLamb.items.armour.Clothes;
 import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
 
+import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
+import be.daStudios.legendOfTheLamb.items.packs.ClericalBackPack;
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 
@@ -14,12 +17,12 @@ public class Healer implements Classes{
     private int baseArmour = 4;
     private int wisdom = 2;
     private int charisma = 1;
-    Dices lifeDice = Dices.D6;
-    //    HolySymbol holySymbol = new HolySymbol();
-    Clothes clothes = new Clothes();
-    //    ClericBackPack clericBackPack = new ClericBackPack();
+    private Dices lifeDice = Dices.D6;
+    //    HolySymbol Item = new HolySymbol();
+    private Item clothes = new Clothes();
+    private ClericalBackPack clericBackPack = new ClericalBackPack();
     private int gold = 15;
-    Dagger dagger = new Dagger();
+    private Item dagger = new Dagger();
 
     public String getDescription() {
         return description;
@@ -47,11 +50,11 @@ public class Healer implements Classes{
     }
 
     @Override
-    public Armour getChainMail() {
+    public Item getChainMail() {
         return null;
     }
 
-    public Clothes getClothes() {
+    public Item getClothes() {
         return clothes;
     }
 
@@ -60,11 +63,11 @@ public class Healer implements Classes{
     }
 
     @Override
-    public Sword getSword() {
+    public Item getSword() {
         return null;
     }
 
-    public Dagger getDagger() {
+    public Item getDagger() {
         return dagger;
     }
 
@@ -79,8 +82,13 @@ public class Healer implements Classes{
     }
 
     @Override
-    public LeatherArmour getLeatherArmour() {
+    public Item getLeatherArmour() {
         return null;
+    }
+
+    @Override
+    public BackPacks getBackPack() {
+        return clericBackPack;
     }
 
 //    public HolySymbol getHolySymbol() {
