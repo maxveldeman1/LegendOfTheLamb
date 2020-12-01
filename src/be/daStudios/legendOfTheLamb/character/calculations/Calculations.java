@@ -7,7 +7,7 @@ public class Calculations {
 
 
     public int armourModifier(User user) {
-        return ((user.getClasses().getBaseArmour() + user.getArmour().getArmourBase()) -15) / 2;
+        return ((user.getClasses().getBaseArmour() + user.getArmour().getArmourBase()) -15) / 2 ;
     }
 
     public int strengthAbilityModifier(User user) {
