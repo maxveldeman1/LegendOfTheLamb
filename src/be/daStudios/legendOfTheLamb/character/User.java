@@ -20,8 +20,8 @@ public class User {
     private Race race;
     //// Strength/Constitution/Dexterity/Wisdom/Intelligence/Charisma.
     private int[] abilities;
-    private Item weapon;
-    private Item armour;
+    private Weapon weapon;
+    private Armour armour;
     private int experience = 0;
     private int level = 1;
     private Dices lifeDice;
@@ -42,7 +42,7 @@ public class User {
         return this.gold;
     }
 
-    public void setWeapon(Item weapon) {
+    public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
 
@@ -113,11 +113,11 @@ public class User {
         this.abilities = abilities;
     }
 
-    public Item getArmour() {
+    public Armour getArmour() {
         return armour;
     }
 
-    public void setArmour(Item armour) {
+    public void setArmour(Armour armour) {
         this.armour = armour;
     }
 
