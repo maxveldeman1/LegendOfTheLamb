@@ -1,151 +1,58 @@
 package be.daStudios.legendOfTheLamb.items;
 
-import javax.swing.*;
-import java.io.Serializable;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
+public abstract class Item {
+    private String name;
+    String itemDescription;
+    int maxItemCharge;
+    boolean weapon = false;
+    boolean consumable = false;
+    boolean armour = false;
 
-public class Item implements Entity, Serializable {
-    protected boolean isVisible;
-    protected String displayName;
-    protected String name;
-    protected String description;
-    protected ArrayList<Entity> inventory = new ArrayList<Entity>();
-    protected boolean canBePickedUp = true;
-    protected String why;
-    protected int gold;
-    protected boolean forSale;
-    protected Entity key;
-    protected int value;
-    protected DecimalFormat df = new DecimalFormat("#.#");
-
-    public Item(String displayName, String name, String description,int ... values) {
-        this.displayName = displayName;
-        this.name = name;
-        this.description = description;
-        canBePickedUp = true;
-        if (values.length == 0) {
-            value = 0;
-        } else {
-            value = values[0];
-        }
-        gold = 0;
-        forSale = false;
-    }
-
-
-    @Override
-    public void addEntity(Entity entity) {
-        inventory.add(entity);
-
-    }
-
-    @Override
-    public ArrayList<Entity> getInventory() {
-        return inventory;
-    }
-
-    @Override
-    public void removeObject(Entity entity) {
-        inventory.remove(entity);
-
-    }
-
-    @Override
-    public String getDisplayName() {
-        return null;
-    }
-
-    @Override
     public String getName() {
-        return null;
+        return name;
     }
 
-    @Override
-    public String getDescription() {
-        return displayName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public boolean TestCanBePickedUp() {
-        return canBePickedUp;
+    public String getItemDescription() {
+        return itemDescription;
     }
 
-    @Override
-    public void CantBePickedUp(String why) {
-        canBePickedUp = false;
-        this.why = why;
-
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
     }
 
-    @Override
-    public String CanBePickedUp_Why() {
-        return why;
+    public int getMaxItemCharge() {
+        return maxItemCharge;
     }
 
-    @Override
-    public void printInventory(JTextArea y) {
-        y.append("Searching the " + displayName + " you find the following items:\n\n");
-        for (Entity a : inventory) {
-            y.append(a.getName());
-        }
-
+    public void setMaxItemCharge(int maxItemCharge) {
+        this.maxItemCharge = maxItemCharge;
     }
 
-    @Override
-    public boolean isLocked() {
-        return false;
+    public boolean isWeapon() {
+        return weapon;
     }
 
-    @Override
-    public Entity getKey() {
-        return key;
+    public void setWeapon(boolean weapon) {
+        this.weapon = weapon;
     }
 
-    @Override
-    public void lock() {
-
+    public boolean isConsumable() {
+        return consumable;
     }
 
-    @Override
-    public void unlock() {
-
+    public void setConsumable(boolean consumable) {
+        this.consumable = consumable;
     }
 
-    @Override
-    public int getGold() {
-        return gold;
+    public boolean isArmour() {
+        return armour;
     }
 
-    @Override
-    public void modifyGold(int a) {
-        this.gold =gold+a;
-
-    }
-
-    @Override
-    public void setGold(int a) {
-        gold =a;
-
-    }
-
-    @Override
-    public void forSale(boolean a) {
-        forSale =a;
-    }
-
-    @Override
-    public boolean isForSale() {
-        return forSale;
-    }
-
-    @Override
-    public void setVisible(boolean a) {
-        isVisible = a;
-    }
-
-    @Override
-    public boolean isVisible() {
-        return isVisible;
+    public void setArmour(boolean armour) {
+        this.armour = armour;
     }
 }

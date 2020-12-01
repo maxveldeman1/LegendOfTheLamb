@@ -5,7 +5,7 @@ import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.armour.ChainMail;
 import be.daStudios.legendOfTheLamb.items.armour.Clothes;
 import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
-import be.daStudios.legendOfTheLamb.items.packs.ClericalBackPack;
+
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 
@@ -87,7 +87,5 @@ public class Healer implements Classes{
 //        return HolySymbol;
 //    }
 //
-    public ClericalBackPack getBackPack() {
-        return clericBackPack;
-    }
+
 }

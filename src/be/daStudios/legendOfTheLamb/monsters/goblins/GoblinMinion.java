@@ -1,5 +1,6 @@
 package be.daStudios.legendOfTheLamb.monsters.goblins;
 
+import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 import be.daStudios.legendOfTheLamb.monsters.Monsters;
 
 public class GoblinMinion extends Monsters {
@@ -10,5 +11,6 @@ public class GoblinMinion extends Monsters {
         super.setHitPoints(hitPoints);
         int combatRating = 0;
         super.setCombatRating(combatRating);
+
     }
 }

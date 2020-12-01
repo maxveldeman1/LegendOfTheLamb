@@ -86,9 +86,6 @@ public class Ranger implements Classes{
 //        return bow;
 //    }
 //
-    public BackPack getBackPack() {
-        return backPack;
-    }
 
 
 }

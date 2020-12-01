@@ -1,10 +1,18 @@
 package be.daStudios.legendOfTheLamb.items.armour;
 
-public class ChainMail implements Armour{
+import be.daStudios.legendOfTheLamb.items.Item;
+
+public class ChainMail extends Item implements Armour{
     private String description = "Many small rings make one big strong jacket.";
     private int ArmourBase = 10;
     int AC = 10;
     private String Penalty = "Sneaking, makes noise";
+
+    public ChainMail() {
+        setName("Chain Mail");
+        super.setItemDescription(getDescription());
+        super.setArmour(true);
+    }
 
     public String getDescription() {
         return description;
@@ -37,4 +45,6 @@ public class ChainMail implements Armour{
     public void setPenalty(String penalty) {
         Penalty = penalty;
     }
+
+
 }
