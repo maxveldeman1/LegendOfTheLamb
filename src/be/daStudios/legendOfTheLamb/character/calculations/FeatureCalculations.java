@@ -5,16 +5,16 @@ import be.daStudios.legendOfTheLamb.character.User;
 public class FeatureCalculations {
     Calculations calculations = new Calculations();
 
-    public int calculateHealthPoints(User user) {
-        int healthpoints = 0;
+    public int calculateHitPoints(User user) {
+        int hitoints = 0;
         for (int i = 0; i < 3; i++) {
-            healthpoints = DiceThrow.diceThrow(user.getLifeDice());
+            hitoints = DiceThrow.diceThrow(user.getLifeDice());
         }
 
-        return healthpoints + 10;
+        return hitoints + 10;
     }
 
-//    public int calculateLevelUpHealthPoints() {
+//    public int calculateLevelUpHitPoints() {
 //
 //    }
     //TODO NOT SURE IF IT WORKS
