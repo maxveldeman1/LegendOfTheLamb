@@ -115,7 +115,7 @@ public class User {
         this.abilities = abilities;
     }
 
-    public Item getArmour() {
+    public Armour getArmour() {
         return armour;
     }
 
