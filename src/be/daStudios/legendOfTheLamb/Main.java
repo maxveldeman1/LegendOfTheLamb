@@ -5,6 +5,7 @@ public class Main {
         Menu menu = new Menu();
         menu.bootUpMenu();
         menu.gameMenu();
+        menu.endMenu();
     }
 
 }

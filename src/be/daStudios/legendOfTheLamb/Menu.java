@@ -27,26 +27,60 @@ public class Menu {
     }
 
     public void gameMenu(){
-        printMenu();
-        ChoiceChecker choiceChecker = new ChoiceChecker();
-        String choice= choiceChecker.choiceCheckerStep1();
-        System.out.println("-----------------------------");
-        switch (choice){
-            case "new":
-                createNewGame(choiceChecker);
-                break;
-            case "load":
-                break;
-            case "reset":
-                break;
-            case"controls":
-                break;
-            case"settings":
-                break;
-            case"quit":
-                break;
-        }
+      String choice =null;
+      do {
+          printMenu();
+          ChoiceChecker choiceChecker = new ChoiceChecker();
+          choice = choiceChecker.choiceCheckerStep1();
+          System.out.println("-----------------------------");
+          switch (choice) {
+              case "new":
+                  createNewGame(choiceChecker);
+                  break;
+              case "load":
+                  break;
+              case "reset":
+                  break;
+              case "controls":
+                  printControls();
+                  break;
+              case "settings":
+                  System.out.println("\t\tSettings\n" +
+                          "-----------------------------\n" +
+                          "Username: Cor\n" +
+                          "Wachtwoord: *********\n" +
+                          "Type -Key value-\n" +
+                          "to change your settings.\n" +
+                          "Type -Menu-\n" +
+                          "to go back to main menu");
 
+                  //TODO switchcase to change username/ password
+                  gameMenu();
+                  break;
+          }
+      } while (!choice.matches("(?i)Quit"));
+    }
+    public void endMenu() {
+        System.out.println("Thank you for playing our game!\n" +
+                "\n" +
+                "Closing down game!\n" +
+                "   .   .   . Done!\n-----------------------------");
+    }
+
+    private void printControls() {
+        System.out.println("\t\tControls\n" +
+                        "-----------------------------\n" +
+            "Go -direction- : go to direction\n"+
+            "Direction : north, south, west, east\n"+
+            "Attack -monster- : attack the\n"+
+            "specified monster with main weapon.\n"+
+            "Draw -weapon- : Draw your weapon\n"+
+            "Use -item- on -obstacle- : us the\n"+
+            "item on the obstacle.\n"+
+            "Look : Look around again\n"+
+            "Save -saveName- : Saves the game.\n" +
+            "Quit : Goes back to main Menu\n" +
+                "-----------------------------");
     }
 
     private void createNewGame(ChoiceChecker cc) {
@@ -78,7 +112,7 @@ public class Menu {
                 "-----------------------------");
         String classChoice = cc.classChoiceCheck();
         String name = keyboard.askForText("-----------------------------\n" +
-                "What is your characters name\n?" +
+                "What is your characters name?\n" +
                 "-----------------------------");
         UserMethods userMethods = new UserMethods();
         switch (raceChoice.toLowerCase()) {
@@ -155,7 +189,7 @@ public class Menu {
 
     private void printMenu() {
         System.out.println("-----------------------------\n"+
-                "What do you want to do?\n" +
+                "   What do you want to do?\n" +
                 "-----------------------------\n" +
                 "New      – Start a New Game\n" +
                 "Load     – Load a Saved Game\n" +
