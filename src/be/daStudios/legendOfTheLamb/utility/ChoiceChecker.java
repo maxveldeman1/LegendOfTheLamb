@@ -26,7 +26,7 @@ public class ChoiceChecker {
         String choice = keyboard.askForText("Your choice: ");
         if (!choice.matches("(?i)Human|Dwarf|Elf")) {
             System.out.println("That is not a valid choice!");
-            choice = choiceCheckerStep1();
+            choice = raceChoiceCheck();
         }
         return choice.toLowerCase();
 
@@ -36,7 +36,7 @@ public class ChoiceChecker {
         String choice = keyboard.askForText("Your choice: ");
         if (!choice.matches("(?i)Fighter|Healer|Ranger")) {
             System.out.println("That is not a valid choice!");
-            choice = choiceCheckerStep1();
+            choice = classChoiceCheck();
         }
         return choice.toLowerCase();
 

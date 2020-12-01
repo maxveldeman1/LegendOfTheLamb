@@ -12,6 +12,12 @@ public class Bow extends Item implements Weapon{
     private int hitChance;
     private int damage;
 
+    public Bow() {
+        setName("Bow");
+        super.setItemDescription(getDescription());
+        super.setWeapon(true);
+    }
+
     public String getDescription() {
         return "A piece of wood, stringed with flaxen string. Nothing special, but lethal from a distance.";
     }

@@ -10,6 +10,12 @@ public class Dagger extends Item implements Weapon {
     private int hitChance;
     private int damage;
 
+    public Dagger() {
+        setName("Dagger");
+        super.setItemDescription(getDescription());
+        super.setWeapon(true);
+    }
+
     public String getDescription() {
         return "A small knife that can be used in different situations.";
     }
