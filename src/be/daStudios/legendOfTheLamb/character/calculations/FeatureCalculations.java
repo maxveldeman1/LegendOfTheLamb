@@ -14,10 +14,7 @@ public class FeatureCalculations {
         return hitoints + 10;
     }
 
-//    public int calculateLevelUpHitPoints() {
-//
-//    }
-    //TODO NOT SURE IF IT WORKS
+
     public int calculateArmourClass(User user) {
         return user.getClasses().getBaseArmour() + calculations.armourModifier(user) + calculations.strengthAbilityModifier(user);
     }
