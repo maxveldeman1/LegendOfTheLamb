@@ -4,6 +4,8 @@ import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 import be.daStudios.legendOfTheLamb.character.classes.Classes;
 import be.daStudios.legendOfTheLamb.character.races.Race;
 import be.daStudios.legendOfTheLamb.items.armour.Armour;
+import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
+import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
 public class User {
     //TODO Afwerken, Armour aantrekmethode
@@ -17,25 +19,51 @@ public class User {
     private Race race;
     //// Strength/Constitution/Dexterity/Wisdom/Intelligence/Charisma.
     private int[] abilities;
-//    Backpack
+    private Weapon weapon;
     private Armour armour;
     private int experience = 0;
     private int level = 1;
     private Dices lifeDice;
+    private BackPacks backpack;
+    private int gold;
 
     public User (Classes classes, Race race, String name) {
         setClasses(classes);
         setRace(race);
         setName(name);
-
-
     }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public int getGold() {
+        return this.gold;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public Weapon getWeapon() {
+        return this.weapon;
+    }
+
+    public void setBackpack(BackPacks backpack) {
+        this.backpack = backpack;
+    }
+
+    public BackPacks getBackPack() {
+        return this.backpack;
+    }
+
    public void setName(String name) {
         this.name = name;}
 
         public String getName() {
         return this.name;
         }
+
     public void setProficiency(int proficiency) {
         this.proficiency = proficiency;
     }

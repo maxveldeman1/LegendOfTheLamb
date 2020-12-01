@@ -1,9 +1,12 @@
 package be.daStudios.legendOfTheLamb.character.classes;
 
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
+import be.daStudios.legendOfTheLamb.items.Item;
 import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.armour.Clothes;
 import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
+import be.daStudios.legendOfTheLamb.items.packs.BackPack;
+import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 
@@ -13,12 +16,12 @@ public class Ranger implements Classes{
     private int baseArmour = 6;
     private int dexterty = 2;
     private int constitution = 1;
-    Dices lifeDice = Dices.D8;
-    //    Bow bow = new Bow();
-    LeatherArmour leatherArmour = new LeatherArmour();
-    //    BackPack backPack = new BackPack();
+    private Dices lifeDice = Dices.D8;
+    //    Bow Item = new Bow();
+    private Item leatherArmour = new LeatherArmour();
+    private BackPack backPack = new BackPack();
     private int gold = 10;
-    Sword sword = new Sword();
+    private Item sword = new Sword();
 
     public String getDescription() {
         return description;
@@ -46,19 +49,24 @@ public class Ranger implements Classes{
     }
 
     @Override
-    public Armour getChainMail() {
+    public Item getChainMail() {
         return null;
     }
 
-    public LeatherArmour getLeatherArmour() {
+    public Item getLeatherArmour() {
         return leatherArmour;
+    }
+
+    @Override
+    public BackPacks getBackPack() {
+        return backPack;
     }
 
     public int getGold() {
         return gold;
     }
 
-    public Sword getSword() {
+    public Item getSword() {
         return sword;
     }
 
@@ -73,16 +81,16 @@ public class Ranger implements Classes{
     }
 
     @Override
-    public Clothes getClothes() {
+    public Item getClothes() {
         return null;
     }
 
     @Override
-    public Dagger getDagger() {
+    public Item getDagger() {
         return null;
     }
 
-//    public Bow getBow() {
+//    public Item getBow() {
 //        return bow;
 //    }
 //
