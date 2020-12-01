@@ -1,6 +1,8 @@
 package be.daStudios.legendOfTheLamb.items.weapons;
 
-public interface Weapon {
+import be.daStudios.legendOfTheLamb.items.Item;
+
+public interface Weapon extends Item {
 
     public String getDescription();
 

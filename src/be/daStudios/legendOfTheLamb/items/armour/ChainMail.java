@@ -1,17 +1,11 @@
 package be.daStudios.legendOfTheLamb.items.armour;
 
-import be.daStudios.legendOfTheLamb.items.Item;
-
-public class ChainMail extends Item implements Armour{
+public class ChainMail implements Armour{
     private String description = "Many small rings make one big strong jacket.";
     int AC = 10;
     private String Penalty = "Sneaking, makes noise";
 
-    public ChainMail() {
-        setName("Chain Mail");
-        super.setItemDescription(getDescription());
-        super.setArmour(true);
-    }
+
 
     public String getDescription() {
         return description;

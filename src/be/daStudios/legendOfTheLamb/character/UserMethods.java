@@ -4,9 +4,7 @@ import be.daStudios.legendOfTheLamb.character.calculations.DiceThrow;
 import be.daStudios.legendOfTheLamb.character.calculations.FeatureCalculations;
 import be.daStudios.legendOfTheLamb.character.classes.Classes;
 import be.daStudios.legendOfTheLamb.character.races.Race;
-import be.daStudios.legendOfTheLamb.items.Item;
-import be.daStudios.legendOfTheLamb.items.armour.Armour;
-import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
+import be.daStudios.legendOfTheLamb.items.weapons.SpellBook;
 
 import java.util.Scanner;
 
@@ -55,7 +53,7 @@ public class UserMethods {
         if (user.getClasses().getDescription().equals("Healer")) {
             if (item instanceof SpellBook) {
                 if (user.getBackPack().getSpellBookInventory().size() < 5) {
-                    user.getBackPack().getSpellBookInventory().add(item);
+                    user.getBackPack().getSpellBookInventory().add((SpellBook) item);
                 } else {
                     System.out.println("Your spellBookInventory is full! Please remove an item first.");
                 }
@@ -113,7 +111,7 @@ public class UserMethods {
                 user.setBackpack(user.getClasses().getBackPack());
                 user.getBackPack().getInventory().add(user.getClasses().getChainMail());
                 user.getBackPack().getInventory().add(user.getClasses().getSword());
-                user.getBackPack().getInventory().add(user.getClasses().getShield());
+//                user.getBackPack().getInventory().add(user.getClasses().getShield());
                 user.setGold(user.getClasses().getGold());
                 break;
             case ("Ranger"):
@@ -126,7 +124,7 @@ public class UserMethods {
                 user.setLifeDice(user.getClasses().getLifeDice());
                 user.setBackpack(user.getClasses().getBackPack());
                 user.getBackPack().getInventory().add(user.getClasses().getSword());
-                user.getBackPack().getInventory().add(user.getClasses().getBow());
+//                user.getBackPack().getInventory().add(user.getClasses().getBow());
                 user.getBackPack().getInventory().add(user.getClasses().getLeatherArmour());
                 user.setGold(user.getClasses().getGold());
                 break;
@@ -139,7 +137,7 @@ public class UserMethods {
                 user.getAbilities()[5] += user.getClasses().getCharisma();
                 user.setLifeDice(user.getClasses().getLifeDice());
                 user.setBackpack(user.getClasses().getBackPack());
-                user.getBackPack().getInventory().add(user.getClasses().getHolySymbol());
+//                user.getBackPack().getInventory().add(user.getClasses().getHolySymbol());
                 user.getBackPack().getInventory().add(user.getClasses().getDagger());
                 user.getBackPack().getInventory().add(user.getClasses().getClothes());
                 user.setGold(user.getClasses().getGold());

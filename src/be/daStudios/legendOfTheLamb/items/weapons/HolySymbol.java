@@ -2,19 +2,14 @@ package be.daStudios.legendOfTheLamb.items.weapons;
 
 import be.daStudios.legendOfTheLamb.character.calculations.DiceThrow;
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
-import be.daStudios.legendOfTheLamb.items.Item;
 
-public class HolySymbol extends Item implements Weapon {
+public class HolySymbol implements Weapon {
     Dices attDice = Dices.D20;
     Dices dmgDice = Dices.D6;
     private int hitChance;
     private int damage;
 
-    public HolySymbol() {
-        setName("Holy Symbol");
-        super.setItemDescription(getDescription());
-        super.setWeapon(true);
-    }
+
 
     public String getDescription() {
         return "An emblem to a god that is imbued with its power.Can be used to cast various spells that need support off the Wisdom Ability.";
