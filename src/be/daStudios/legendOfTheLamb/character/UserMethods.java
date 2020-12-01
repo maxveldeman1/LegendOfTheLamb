@@ -1,15 +1,9 @@
 package be.daStudios.legendOfTheLamb.character;
 
-import be.daStudios.legendOfTheLamb.character.calculations.Calculations;
+import be.daStudios.legendOfTheLamb.character.calculations.DiceThrow;
 import be.daStudios.legendOfTheLamb.character.calculations.FeatureCalculations;
 import be.daStudios.legendOfTheLamb.character.classes.Classes;
-import be.daStudios.legendOfTheLamb.character.classes.Fighter;
-import be.daStudios.legendOfTheLamb.character.races.Dwarf;
 import be.daStudios.legendOfTheLamb.character.races.Race;
-
-//TODO als player experience bij krijgt. Checken of hij level omhoog gaat, indien het geval lvl increasen.
-//TODO als user lvl increased, proficiency updaten + hitpoints increasen.
-//TODO als
 
 
 //TODO herbereking Armourclass in de WearArmour methode -> als hij iets aantrekt uit backpack halen + hetgeen hij aanheeft in backpack steken.
@@ -29,16 +23,27 @@ public class UserMethods {
        }
         else if  (user.getExperience() >= 250 || user.getExperience() < 700) {
             user.setLevel(2);
+            user.setProficiency(fc.calculateProficiency(user));
+            increaseHpWhenLevelUp(user);
         } else if (user.getExperience() >= 700 || user.getExperience() < 1500) {
             user.setLevel(3);
+           user.setProficiency(fc.calculateProficiency(user));
+           increaseHpWhenLevelUp(user);
         } else if (user.getExperience() >= 1500 || user.getExperience() < 3500) {
             user.setLevel(4);
+           user.setProficiency(fc.calculateProficiency(user));
+           increaseHpWhenLevelUp(user);
         } else if (user.getExperience() >= 3500) {
             user.setLevel(5);
+           user.setProficiency(fc.calculateProficiency(user));
+           increaseHpWhenLevelUp(user);
         }
     }
 
 
+    public void increaseHpWhenLevelUp(User user) {
+        user.setHitPoints(user.getHitPoints() + (DiceThrow.diceThrow(user.getLifeDice()) * 2));
+    }
 
 
     public User createUser(Classes classes, Race race, String name) {
