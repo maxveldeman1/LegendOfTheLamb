@@ -89,7 +89,5 @@ public class Fighter implements Classes{
 //        return shield;
 //    }
 //
-    public BackPack getBackPack() {
-        return backPack;
-    }
+
 }
