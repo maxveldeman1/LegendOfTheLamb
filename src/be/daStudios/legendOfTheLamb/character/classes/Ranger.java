@@ -2,6 +2,7 @@ package be.daStudios.legendOfTheLamb.character.classes;
 
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
+import be.daStudios.legendOfTheLamb.items.packs.BackPack;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 
 public class Ranger implements Classes{
@@ -13,8 +14,8 @@ public class Ranger implements Classes{
     Dices lifeDice = Dices.D8;
     //    Bow bow = new Bow();
     LeatherArmour leatherArmour = new LeatherArmour();
-    //    BackPack backPack = new BackPack();
-    Integer coins = 10;
+    BackPack backPack = new BackPack();
+    private int gold = 10;
     Sword sword = new Sword();
 
     public String getDescription() {
@@ -41,8 +42,8 @@ public class Ranger implements Classes{
         return leatherArmour;
     }
 
-    public Integer getCoins() {
-        return coins;
+    public int getGold() {
+        return gold;
     }
 
     public Sword getSword() {
@@ -53,9 +54,9 @@ public class Ranger implements Classes{
 //        return bow;
 //    }
 //
-//    public BackPack getBackPack() {
-//        return backPack;
-//    }
+    public BackPack getBackPack() {
+        return backPack;
+    }
 
 
 }

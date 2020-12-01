@@ -4,6 +4,7 @@ import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 import be.daStudios.legendOfTheLamb.items.armour.ChainMail;
 import be.daStudios.legendOfTheLamb.items.armour.Clothes;
 import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
+import be.daStudios.legendOfTheLamb.items.packs.ClericalBackPack;
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 
@@ -15,8 +16,8 @@ public class Healer implements Classes{
     Dices lifeDice = Dices.D6;
     //    HolySymbol holySymbol = new HolySymbol();
     Clothes clothes = new Clothes();
-    //    ClericBackPack clericBackPack = new ClericBackPack();
-    Integer coins = 15;
+    ClericalBackPack clericBackPack = new ClericalBackPack();
+    private int gold = 15;
     Dagger dagger = new Dagger();
 
     public String getDescription() {
@@ -43,8 +44,8 @@ public class Healer implements Classes{
         return clothes;
     }
 
-    public Integer getCoins() {
-        return coins;
+    public int getGold() {
+        return gold;
     }
 
     public Dagger getDagger() {
@@ -55,7 +56,7 @@ public class Healer implements Classes{
 //        return HolySymbol;
 //    }
 //
-//    public ClericBackPack getClericBackPack() {
-//        return clericBackPack;
-//    }
+    public ClericalBackPack getBackPack() {
+        return clericBackPack;
+    }
 }

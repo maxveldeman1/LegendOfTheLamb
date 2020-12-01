@@ -3,6 +3,7 @@ package be.daStudios.legendOfTheLamb.character.classes;
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.armour.ChainMail;
+import be.daStudios.legendOfTheLamb.items.packs.BackPack;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 
 public class Fighter implements Classes{
@@ -14,8 +15,8 @@ public class Fighter implements Classes{
     Dices lifeDice = Dices.D12;
 //    Shield shield = new Shield();
     Armour chainMail = new ChainMail();
-//    BackPack backPack = new BackPack();
-    Integer coins = 15;
+    BackPack backPack = new BackPack();
+    private int gold = 15;
     Sword sword = new Sword();
 
 
@@ -39,8 +40,8 @@ public class Fighter implements Classes{
         return chainMail;
     }
 
-    public Integer getCoins() {
-        return coins;
+    public int getGold() {
+        return gold;
     }
 
     public Sword getSword() {
@@ -51,7 +52,7 @@ public class Fighter implements Classes{
 //        return shield;
 //    }
 //
-//    public BackPack getBackPack() {
-//        return backPack;
-//    }
+    public BackPack getBackPack() {
+        return backPack;
+    }
 }
