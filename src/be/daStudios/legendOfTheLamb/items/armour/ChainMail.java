@@ -4,7 +4,6 @@ import be.daStudios.legendOfTheLamb.items.Item;
 
 public class ChainMail extends Item implements Armour{
     private String description = "Many small rings make one big strong jacket.";
-    private int ArmourBase = 10;
     int AC = 10;
     private String Penalty = "Sneaking, makes noise";
 
@@ -23,12 +22,9 @@ public class ChainMail extends Item implements Armour{
     }
 
     public int getArmourBase() {
-        return ArmourBase;
+        return 10;
     }
 
-    public void setArmourBase(int armourBase) {
-        ArmourBase = armourBase;
-    }
 
     public int getAC() {
         return AC;

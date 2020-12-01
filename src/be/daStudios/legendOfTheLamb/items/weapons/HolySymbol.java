@@ -10,6 +10,12 @@ public class HolySymbol extends Item implements Weapon {
     private int hitChance;
     private int damage;
 
+    public HolySymbol() {
+        setName("Holy Symbol");
+        super.setItemDescription(getDescription());
+        super.setWeapon(true);
+    }
+
     public String getDescription() {
         return "An emblem to a god that is imbued with its power.Can be used to cast various spells that need support off the Wisdom Ability.";
     }
@@ -25,4 +31,6 @@ public class HolySymbol extends Item implements Weapon {
     public void setBasicDamage() {
         this.damage = DiceThrow.diceThrow(dmgDice);
     }
+
+
 }

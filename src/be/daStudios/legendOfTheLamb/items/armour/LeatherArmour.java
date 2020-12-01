@@ -7,6 +7,12 @@ public class LeatherArmour extends Item implements Armour{
     private int armourBase =8;
     private int AC = 8;
 
+    public LeatherArmour() {
+        setName("Leather Armour");
+        super.setItemDescription(getDescription());
+        super.setArmour(true);
+    }
+
     public String getDescription() {
         return description;
     }

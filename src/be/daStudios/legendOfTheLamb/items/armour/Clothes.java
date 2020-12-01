@@ -7,6 +7,12 @@ public class Clothes extends Item implements Armour{
     private int armourBase = 4;
     private int AC = 4;
 
+    public Clothes() {
+        setName("Linen Clothes");
+        super.setItemDescription(getDescription());
+        super.setArmour(true);
+    }
+
     public String getDescription() {
         return description;
     }
