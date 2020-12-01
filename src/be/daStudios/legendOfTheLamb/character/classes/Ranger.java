@@ -4,7 +4,7 @@ import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 
-public class Ranger {
+public class Ranger implements Classes{
 
     private String description = "Ranger";
     private int baseArmour = 6;

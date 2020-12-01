@@ -1,10 +1,10 @@
 package be.daStudios.legendOfTheLamb.character.races;
 
-public class Elf {
+public class Elf implements Race{
     private final String description = "Elf";
     private int hitPoints;
     private int armourClass;
-    private final int speed = 7;
+    private final int baseSpeed = 7;
     private int initiative;
     // Strength/Constitution/Dexterity/Wisdom/Intelligence/Charisma.
     private final int[] abilities = {16,14,16,13,13,8};
@@ -21,8 +21,8 @@ public class Elf {
         return armourClass;
     }
 
-    public int getSpeed() {
-        return speed;
+    public int getBaseSpeed() {
+        return baseSpeed;
     }
 
     public int getInitiative() {

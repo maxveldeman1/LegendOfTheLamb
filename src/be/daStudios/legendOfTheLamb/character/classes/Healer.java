@@ -7,7 +7,7 @@ import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 
-public class Healer {
+public class Healer implements Classes{
     private String description = "Healer";
     private int baseArmour = 4;
     private int wisdom = 2;

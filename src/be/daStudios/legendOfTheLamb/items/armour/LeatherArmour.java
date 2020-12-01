@@ -1,6 +1,6 @@
 package be.daStudios.legendOfTheLamb.items.armour;
 
-public class LeatherArmour {
+public class LeatherArmour implements Armour{
     private String description = " A rough animal hide that is tanned and tailored to the user. Great for agile work.";
     private int armourBase =8;
     private int AC = 8;
