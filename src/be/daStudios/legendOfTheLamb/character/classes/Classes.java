@@ -14,7 +14,9 @@ public interface Classes {
     public Dices getLifeDice();
     public Armour getChainMail();
 
-    public Integer getCoins();
+    public int getGold();
 
     public Sword getSword();
+
+
 }
