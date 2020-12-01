@@ -2,19 +2,12 @@ package be.daStudios.legendOfTheLamb.items.weapons;
 
 import be.daStudios.legendOfTheLamb.character.calculations.DiceThrow;
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
-import be.daStudios.legendOfTheLamb.items.Item;
 
-public class SpellBook extends Item implements Weapon  {
+public class SpellBook implements Weapon  {
     Dices attDice = Dices.D20;
     private int hitChance;
     private int damage;
 
-    public SpellBook() {
-        setName("Spell Book");
-        super.setItemDescription(getDescription());
-        super.setWeapon(true);
-        super.setMaxItemCharge(3);
-    }
 
     public String getDescription() {
         return "An item created by the elves of the past. Usable item to unleash a powerful attack.";

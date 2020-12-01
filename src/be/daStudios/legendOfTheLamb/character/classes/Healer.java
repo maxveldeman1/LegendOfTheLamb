@@ -1,16 +1,12 @@
 package be.daStudios.legendOfTheLamb.character.classes;
 
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
-import be.daStudios.legendOfTheLamb.items.Item;
 import be.daStudios.legendOfTheLamb.items.armour.Armour;
-import be.daStudios.legendOfTheLamb.items.armour.ChainMail;
 import be.daStudios.legendOfTheLamb.items.armour.Clothes;
-import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
 
 import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
 import be.daStudios.legendOfTheLamb.items.packs.ClericalBackPack;
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
-import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
 public class Healer implements Classes{

@@ -4,11 +4,8 @@ import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 import be.daStudios.legendOfTheLamb.items.Item;
 import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.armour.ChainMail;
-import be.daStudios.legendOfTheLamb.items.armour.Clothes;
-import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
 import be.daStudios.legendOfTheLamb.items.packs.BackPack;
 import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
-import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
