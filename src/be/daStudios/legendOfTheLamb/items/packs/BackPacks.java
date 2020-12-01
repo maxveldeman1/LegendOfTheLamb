@@ -1,6 +1,7 @@
 package be.daStudios.legendOfTheLamb.items.packs;
 
 import be.daStudios.legendOfTheLamb.items.Item;
+import be.daStudios.legendOfTheLamb.items.weapons.SpellBook;
 
 import java.util.List;
 
