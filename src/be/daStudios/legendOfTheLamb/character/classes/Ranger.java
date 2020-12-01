@@ -1,8 +1,10 @@
 package be.daStudios.legendOfTheLamb.character.classes;
 
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
+import be.daStudios.legendOfTheLamb.items.armour.Armour;
+import be.daStudios.legendOfTheLamb.items.armour.Clothes;
 import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
-import be.daStudios.legendOfTheLamb.items.packs.BackPack;
+import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 
 public class Ranger implements Classes{
@@ -14,7 +16,7 @@ public class Ranger implements Classes{
     Dices lifeDice = Dices.D8;
     //    Bow bow = new Bow();
     LeatherArmour leatherArmour = new LeatherArmour();
-    BackPack backPack = new BackPack();
+    //    BackPack backPack = new BackPack();
     private int gold = 10;
     Sword sword = new Sword();
 
@@ -26,7 +28,12 @@ public class Ranger implements Classes{
         return baseArmour;
     }
 
-    public int getDexterty() {
+    @Override
+    public int getStrength() {
+        return 0;
+    }
+
+    public int getDexterity() {
         return dexterty;
     }
 
@@ -36,6 +43,11 @@ public class Ranger implements Classes{
 
     public Dices getLifeDice() {
         return lifeDice;
+    }
+
+    @Override
+    public Armour getChainMail() {
+        return null;
     }
 
     public LeatherArmour getLeatherArmour() {
@@ -48,6 +60,26 @@ public class Ranger implements Classes{
 
     public Sword getSword() {
         return sword;
+    }
+
+    @Override
+    public int getWisdom() {
+        return 0;
+    }
+
+    @Override
+    public int getCharisma() {
+        return 0;
+    }
+
+    @Override
+    public Clothes getClothes() {
+        return null;
+    }
+
+    @Override
+    public Dagger getDagger() {
+        return null;
     }
 
 //    public Bow getBow() {

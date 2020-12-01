@@ -1,6 +1,7 @@
 package be.daStudios.legendOfTheLamb.character.classes;
 
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
+import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.armour.ChainMail;
 import be.daStudios.legendOfTheLamb.items.armour.Clothes;
 import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
@@ -16,7 +17,7 @@ public class Healer implements Classes{
     Dices lifeDice = Dices.D6;
     //    HolySymbol holySymbol = new HolySymbol();
     Clothes clothes = new Clothes();
-    ClericalBackPack clericBackPack = new ClericalBackPack();
+    //    ClericBackPack clericBackPack = new ClericBackPack();
     private int gold = 15;
     Dagger dagger = new Dagger();
 
@@ -26,6 +27,11 @@ public class Healer implements Classes{
 
     public int getBaseArmour() {
         return baseArmour;
+    }
+
+    @Override
+    public int getStrength() {
+        return 0;
     }
 
     public int getWisdom() {
@@ -40,6 +46,11 @@ public class Healer implements Classes{
         return lifeDice;
     }
 
+    @Override
+    public Armour getChainMail() {
+        return null;
+    }
+
     public Clothes getClothes() {
         return clothes;
     }
@@ -48,8 +59,28 @@ public class Healer implements Classes{
         return gold;
     }
 
+    @Override
+    public Sword getSword() {
+        return null;
+    }
+
     public Dagger getDagger() {
         return dagger;
+    }
+
+    @Override
+    public int getDexterity() {
+        return 0;
+    }
+
+    @Override
+    public int getConstitution() {
+        return 0;
+    }
+
+    @Override
+    public LeatherArmour getLeatherArmour() {
+        return null;
     }
 
 //    public HolySymbol getHolySymbol() {

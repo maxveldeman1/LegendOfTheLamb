@@ -6,20 +6,43 @@ import be.daStudios.legendOfTheLamb.character.races.Race;
 import be.daStudios.legendOfTheLamb.items.armour.Armour;
 
 public class User {
-    //TODO Afwerken, Armour aantrekmethode,
+    //TODO Afwerken, Armour aantrekmethode
+    private String name;
     private int hitPoints;
     private int armourClass;
     private int speed;
     private int initiative;
+    private int proficiency;
     private Classes classes;
     private Race race;
     //// Strength/Constitution/Dexterity/Wisdom/Intelligence/Charisma.
     private int[] abilities;
 //    Backpack
     private Armour armour;
-    private int experienceLevel;
+    private int experience = 0;
+    private int level = 1;
     private Dices lifeDice;
-    private int level;
+
+    public User (Classes classes, Race race, String name) {
+        setClasses(classes);
+        setRace(race);
+        setName(name);
+
+
+    }
+   public void setName(String name) {
+        this.name = name;}
+
+        public String getName() {
+        return this.name;
+        }
+    public void setProficiency(int proficiency) {
+        this.proficiency = proficiency;
+    }
+
+    public int getProficiency() {
+        return proficiency;
+    }
 
     public int getHitPoints() {
         return hitPoints;
@@ -69,12 +92,12 @@ public class User {
         this.armour = armour;
     }
 
-    public int getExperienceLevel() {
-        return experienceLevel;
+    public int getExperience() {
+        return experience;
     }
 
-    public void setExperienceLevel(int experienceLevel) {
-        this.experienceLevel = experienceLevel;
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
     public void setClasses(Classes classes) {
@@ -99,6 +122,10 @@ public class User {
 
     public Race getRace() {
         return race;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public int getLevel() {
