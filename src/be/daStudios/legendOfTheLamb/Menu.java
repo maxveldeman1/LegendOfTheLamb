@@ -12,8 +12,14 @@ import be.daStudios.legendOfTheLamb.character.races.Race;
 import be.daStudios.legendOfTheLamb.utility.ChoiceChecker;
 import be.daStudios.legendOfTheLamb.utility.Keyboard;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Menu {
     Keyboard keyboard = new Keyboard();
+    ChoiceChecker choiceChecker = new ChoiceChecker();
+    String username = null;
+    String password = null;
     public void bootUpMenu(){
         System.out.println("+++++++++++++++++++++++++++++\n" +
                 "++ Legend of the Lamb – DA ++\n" +
@@ -27,10 +33,10 @@ public class Menu {
     }
 
     public void gameMenu(){
-      String choice =null;
+      String choice;
+
       do {
           printMenu();
-          ChoiceChecker choiceChecker = new ChoiceChecker();
           choice = choiceChecker.choiceCheckerStep1();
           System.out.println("-----------------------------");
           switch (choice) {
@@ -45,21 +51,45 @@ public class Menu {
                   printControls();
                   break;
               case "settings":
-                  System.out.println("\t\tSettings\n" +
-                          "-----------------------------\n" +
-                          "Username: Cor\n" +
-                          "Wachtwoord: *********\n" +
-                          "Type -Key value-\n" +
-                          "to change your settings.\n" +
-                          "Type -Menu-\n" +
-                          "to go back to main menu");
-
-                  //TODO switchcase to change username/ password
-                  gameMenu();
+                  settingsMenu();
                   break;
           }
       } while (!choice.matches("(?i)Quit"));
     }
+
+    private void settingsMenu(){
+        if (username == null) {
+            setUsernameAndPassword();
+            settingsMenu();
+        } else {
+            printSettings(username, password);
+            String settingsChoice =choiceChecker.settingsChoiceCheck();
+            System.out.println("-----------------------------");
+            if (settingsChoice.matches("(?i)Key Value")){
+                setUsernameAndPassword();
+                settingsMenu();
+            }
+        }
+
+    }
+    private void setUsernameAndPassword() {
+        username =username = keyboard.askForText("Please enter a username.");
+        password = keyboard.askForText("Please enter a password.");
+        System.out.println("-----------------------------");
+    }
+
+    private void printSettings(String username, String password) {
+        System.out.println("\t\tSettings\n" +
+                "-----------------------------\n" +
+                "Username: " + username +
+                "\nWachtwoord: " + Stream.generate(() -> "*").limit(password.length()).collect(Collectors.joining()) +
+                "\nType -Key value-\n" +
+                "to change your settings.\n" +
+                "Type -Menu-\n" +
+                "to go back to main menu\n" +
+                "-----------------------------");
+    }
+
     public void endMenu() {
         System.out.println("Thank you for playing our game!\n" +
                 "\n" +
@@ -83,7 +113,8 @@ public class Menu {
                 "-----------------------------");
     }
 
-    private void createNewGame(ChoiceChecker cc) {
+    private void createNewGame(ChoiceChecker cc)
+    {
         System.out.println("What map do you want to play?\n"
                 +"-----------------------------\n"
         +"\t1. Forest of Streams\n"
