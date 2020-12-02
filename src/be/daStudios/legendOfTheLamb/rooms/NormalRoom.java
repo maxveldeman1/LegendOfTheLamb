@@ -1,12 +1,10 @@
 package be.daStudios.legendOfTheLamb.rooms;
 
-import be.daStudios.legendOfTheLamb.items.Item;
+import be.daStudios.legendOfTheLamb.monsters.Monsters;
 
-public class ItemRoom implements Room {
-
+public class NormalRoom implements Room{
     private String roomInfo;
     private boolean hasBeenCompleted;
-    private Item item;
     private int north;
     private int west;
     private int south;
@@ -14,26 +12,17 @@ public class ItemRoom implements Room {
     private int x;
     private int y;
 
-    public ItemRoom(String roomInfo, Item item, int north, int west, int south, int east, int x, int y) {
+    public NormalRoom(String roomInfo, int north, int west, int south, int east, int x, int y) {
         setRoomInfo(roomInfo);
         setHasBeenCompleted(false);
-        setItem(item);
         setNorth(north);
         setWest(west);
         setSouth(south);
         setEast(east);
         setX(x);
         setY(y);
-
     }
 
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public Item getItem() {
-        return this.item;
-    }
 
     public void setHasBeenCompleted(boolean trueOrFalse) {
         this.hasBeenCompleted = trueOrFalse;
@@ -111,7 +100,4 @@ public class ItemRoom implements Room {
     public String getRoomInfo() {
         return this.roomInfo;
     }
-
-
-
 }
