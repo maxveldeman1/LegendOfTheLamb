@@ -25,7 +25,7 @@ public class FlikFlooier {
         Random random = new Random();
         List<Room> forestOfStreamsMap = new ArrayList<>();
         forestOfStreamsMap.add(new NormalRoom("You start your adventure in the forest of streams.",
-                Direction.EXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, 7, 1));
+                Direction.EXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, 6, 39));
         for (int i = 2; i <= 3 ; i++) {
             int randomRoom = random.nextInt(4);
 
@@ -33,7 +33,7 @@ public class FlikFlooier {
             if (randomRoom ==1) {
 
                 int randomMontserRoomInfo = random.nextInt(monsterRoomInfoArray.length);
-                forestOfStreamsMap.add(new MonsterRoom(monsterRoomInfoArray[randomMontserRoomInfo]),new BugBear(),)
+                forestOfStreamsMap.add(new MonsterRoom(monsterRoomInfoArray[randomMontserRoomInfo]),new BugBear(),Direction.No)
 
             } else if (randomRoom == 2) {
 
