@@ -78,7 +78,7 @@ public class RoomCreation {
         int randomRoom = random.nextInt(4);
         Room room = new NormalRoom("", 0, 0);
 
-        //TODO Uiteindelijk Array van Monsters maken als die af zijn en die ook weer random toevoegen aan monsterRoom
+        //TODO Uiteindelijk Array van Monsters/items maken als die af zijn en die ook weer random toevoegen aan monster/itemRoom
         if (randomRoom == 1) {
 
             int randomMontserRoomInfo = random.nextInt(monsterRoomInfoArray.length);
