@@ -42,6 +42,15 @@ public class ChoiceChecker {
 
     }
 
+    public String settingsChoiceCheck() {
+        String choice = keyboard.askForText("Your choice: ");
+        if (!choice.matches("(?i)Menu|Key Value")){
+            System.out.println("This is not a valid choice!");
+            choice = settingsChoiceCheck();
+        }
+        return choice.toLowerCase();
+    }
+
 
 
 

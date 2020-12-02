@@ -102,6 +102,7 @@ public class UserMethods {
 
         switch (user.getClasses().getDescription()) {
             case ("Fighter"):
+
                 //increase strength
                 user.getAbilities()[0] += user.getClasses().getStrength();
                 //increase constitution
@@ -109,6 +110,7 @@ public class UserMethods {
                 user.setLifeDice(user.getClasses().getLifeDice());
                 user.setBackpack(user.getClasses().getBackPack());
                 user.setArmour(user.getClasses().getChainMail());
+
                 user.getBackPack().getInventory().add(user.getClasses().getSword());
 //                user.getBackPack().getInventory().add(user.getClasses().getShield());
                 user.setGold(user.getClasses().getGold());
@@ -118,6 +120,7 @@ public class UserMethods {
                 user.setProficiency(fc.calculateProficiency(user));
                 break;
             case ("Ranger"):
+
                 user.getAbilities()[2] += user.getClasses().getDexterity();
                 user.getAbilities()[1] += user.getClasses().getConstitution();
                 user.setLifeDice(user.getClasses().getLifeDice());
@@ -125,6 +128,7 @@ public class UserMethods {
                 user.getBackPack().getInventory().add(user.getClasses().getSword());
 //                user.getBackPack().getInventory().add(user.getClasses().getBow());
                 user.setArmour(user.getClasses().getLeatherArmour());
+
                 user.setGold(user.getClasses().getGold());
                 user.setArmourClass(fc.calculateArmourClass(user));
                 user.setHitPoints(fc.calculateHitPoints(user));
@@ -140,6 +144,7 @@ public class UserMethods {
 //                user.getBackPack().getInventory().add(user.getClasses().getHolySymbol());
                 user.getBackPack().getInventory().add(user.getClasses().getDagger());
                 user.setArmour(user.getClasses().getClothes());
+
                 user.setGold(user.getClasses().getGold());
                 user.setArmourClass(fc.calculateArmourClass(user));
                 user.setHitPoints(fc.calculateHitPoints(user));

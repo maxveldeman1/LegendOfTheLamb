@@ -12,8 +12,14 @@ import be.daStudios.legendOfTheLamb.character.races.Race;
 import be.daStudios.legendOfTheLamb.utility.ChoiceChecker;
 import be.daStudios.legendOfTheLamb.utility.Keyboard;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Menu {
     Keyboard keyboard = new Keyboard();
+    ChoiceChecker choiceChecker = new ChoiceChecker();
+    String username = null;
+    String password = null;
     public void bootUpMenu(){
         System.out.println("+++++++++++++++++++++++++++++\n" +
                 "++ Legend of the Lamb – DA ++\n" +
@@ -27,29 +33,88 @@ public class Menu {
     }
 
     public void gameMenu(){
-        printMenu();
-        ChoiceChecker choiceChecker = new ChoiceChecker();
-        String choice= choiceChecker.choiceCheckerStep1();
-        System.out.println("-----------------------------");
-        switch (choice){
-            case "new":
-                createNewGame(choiceChecker);
-                break;
-            case "load":
-                break;
-            case "reset":
-                break;
-            case"controls":
-                break;
-            case"settings":
-                break;
-            case"quit":
-                break;
+      String choice;
+
+      do {
+          printMenu();
+          choice = choiceChecker.choiceCheckerStep1();
+          System.out.println("-----------------------------");
+          switch (choice) {
+              case "new":
+                  createNewGame(choiceChecker);
+                  break;
+              case "load":
+                  break;
+              case "reset":
+                  break;
+              case "controls":
+                  printControls();
+                  break;
+              case "settings":
+                  settingsMenu();
+                  break;
+          }
+      } while (!choice.matches("(?i)Quit"));
+    }
+
+    private void settingsMenu(){
+        if (username == null) {
+            setUsernameAndPassword();
+            settingsMenu();
+        } else {
+            printSettings(username, password);
+            String settingsChoice =choiceChecker.settingsChoiceCheck();
+            System.out.println("-----------------------------");
+            if (settingsChoice.matches("(?i)Key Value")){
+                setUsernameAndPassword();
+                settingsMenu();
+            }
         }
 
     }
+    private void setUsernameAndPassword() {
+        username =username = keyboard.askForText("Please enter a username.");
+        password = keyboard.askForText("Please enter a password.");
+        System.out.println("-----------------------------");
+    }
 
-    private void createNewGame(ChoiceChecker cc) {
+    private void printSettings(String username, String password) {
+        System.out.println("\t\tSettings\n" +
+                "-----------------------------\n" +
+                "Username: " + username +
+                "\nWachtwoord: " + Stream.generate(() -> "*").limit(password.length()).collect(Collectors.joining()) +
+                "\nType -Key value-\n" +
+                "to change your settings.\n" +
+                "Type -Menu-\n" +
+                "to go back to main menu\n" +
+                "-----------------------------");
+    }
+
+    public void endMenu() {
+        System.out.println("Thank you for playing our game!\n" +
+                "\n" +
+                "Closing down game!\n" +
+                "   .   .   . Done!\n-----------------------------");
+    }
+
+    private void printControls() {
+        System.out.println("\t\tControls\n" +
+                        "-----------------------------\n" +
+            "Go -direction- : go to direction\n"+
+            "Direction : north, south, west, east\n"+
+            "Attack -monster- : attack the\n"+
+            "specified monster with main weapon.\n"+
+            "Draw -weapon- : Draw your weapon\n"+
+            "Use -item- on -obstacle- : us the\n"+
+            "item on the obstacle.\n"+
+            "Look : Look around again\n"+
+            "Save -saveName- : Saves the game.\n" +
+            "Quit : Goes back to main Menu\n" +
+                "-----------------------------");
+    }
+
+    private void createNewGame(ChoiceChecker cc)
+    {
         System.out.println("What map do you want to play?\n"
                 +"-----------------------------\n"
         +"\t1. Forest of Streams\n"
@@ -78,7 +143,7 @@ public class Menu {
                 "-----------------------------");
         String classChoice = cc.classChoiceCheck();
         String name = keyboard.askForText("-----------------------------\n" +
-                "What is your characters name\n?" +
+                "What is your characters name?\n" +
                 "-----------------------------");
         UserMethods userMethods = new UserMethods();
         switch (raceChoice.toLowerCase()) {
@@ -155,7 +220,7 @@ public class Menu {
 
     private void printMenu() {
         System.out.println("-----------------------------\n"+
-                "What do you want to do?\n" +
+                "   What do you want to do?\n" +
                 "-----------------------------\n" +
                 "New      – Start a New Game\n" +
                 "Load     – Load a Saved Game\n" +

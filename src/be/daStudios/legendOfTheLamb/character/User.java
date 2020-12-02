@@ -116,13 +116,14 @@ public class User {
         this.abilities = abilities;
     }
 
+    public void setArmour(Armour armour) {
+        this.armour = armour;
+    }
     public Armour getArmour() {
         return armour;
     }
 
-    public void setArmour(Armour armour) {
-        this.armour = armour;
-    }
+
 
     public int getExperience() {
         return experience;
