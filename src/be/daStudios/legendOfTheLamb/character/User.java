@@ -12,6 +12,7 @@ import java.nio.file.Watchable;
 
 public class User {
     //TODO Afwerken, Armour aantrekmethode
+    //TODO Attack/Hit chance methodes?
     private String name;
     private int hitPoints;
     private int armourClass;
