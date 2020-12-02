@@ -51,6 +51,7 @@ public class Menu {
                   printControls();
                   break;
               case "settings":
+
                   settingsMenu();
                   break;
           }
