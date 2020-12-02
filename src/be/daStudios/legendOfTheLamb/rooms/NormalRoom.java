@@ -5,20 +5,12 @@ import be.daStudios.legendOfTheLamb.monsters.Monsters;
 public class NormalRoom implements Room{
     private String roomInfo;
     private boolean hasBeenCompleted;
-    private int north;
-    private int west;
-    private int south;
-    private int east;
     private int x;
     private int y;
 
-    public NormalRoom(String roomInfo, int north, int west, int south, int east, int x, int y) {
+    public NormalRoom(String roomInfo, int x, int y) {
         setRoomInfo(roomInfo);
         setHasBeenCompleted(false);
-        setNorth(north);
-        setWest(west);
-        setSouth(south);
-        setEast(east);
         setX(x);
         setY(y);
     }
@@ -30,46 +22,6 @@ public class NormalRoom implements Room{
 
     public boolean getHasBeenCompleted() {
         return this.hasBeenCompleted;
-    }
-
-    @Override
-    public void setNorth(int north) {
-        this.north = north;
-    }
-
-    @Override
-    public int getNorth() {
-        return north;
-    }
-
-    @Override
-    public void setWest(int west) {
-        this.west = west;
-    }
-
-    @Override
-    public int getWest() {
-        return west;
-    }
-
-    @Override
-    public void setSouth(int south) {
-        this.south = south;
-    }
-
-    @Override
-    public int getSouth() {
-        return south;
-    }
-
-    @Override
-    public void setEast(int east) {
-        this.east = east;
-    }
-
-    @Override
-    public int getEast() {
-        return east;
     }
 
 

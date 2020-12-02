@@ -20,27 +20,11 @@ public interface Room {
 
     boolean getHasBeenCompleted();
 
-    void setNorth(int north);
-
-    int getNorth();
-
-    void setWest(int west);
-
-    int getWest();
-
-    void setSouth(int south);
-
-    int getSouth();
-
-    void setEast(int east);
-
-    int getEast();
 
     //TODO op een of andere manier een bepaald aantal Enums als richting meegeven a/d constructor v/e room..
     //TODO Map maken.. Maybe Arraylist<Room>....
 
     //TODO Rooms met 4 extra int parameters(de mogelijke richtingen) waarbij je bij richtingen die niet mogelijk zijn -1 toevoegt. OF Enum.NOEXIT
     //TODO Room constructor setNorth
-
 
 }
