@@ -9,6 +9,8 @@ import be.daStudios.legendOfTheLamb.character.races.Dwarf;
 import be.daStudios.legendOfTheLamb.character.races.Elf;
 import be.daStudios.legendOfTheLamb.character.races.Human;
 import be.daStudios.legendOfTheLamb.character.races.Race;
+import be.daStudios.legendOfTheLamb.maps.Map;
+import be.daStudios.legendOfTheLamb.maps.Session;
 import be.daStudios.legendOfTheLamb.utility.ChoiceChecker;
 import be.daStudios.legendOfTheLamb.utility.Keyboard;
 
@@ -18,7 +20,7 @@ import java.util.stream.Stream;
 public class Menu {
     Keyboard keyboard = new Keyboard();
     ChoiceChecker choiceChecker = new ChoiceChecker();
-    String username = null;
+    static String username = null;
     String password = null;
     public void bootUpMenu(){
         System.out.println("+++++++++++++++++++++++++++++\n" +
@@ -42,6 +44,7 @@ public class Menu {
           switch (choice) {
               case "new":
                   createNewGame(choiceChecker);
+
                   break;
               case "load":
                   break;
@@ -74,7 +77,7 @@ public class Menu {
 
     }
     private void setUsernameAndPassword() {
-        username =username = keyboard.askForText("Please enter a username.");
+        username = keyboard.askForText("Please enter a username.");
         password = keyboard.askForText("Please enter a password.");
         System.out.println("-----------------------------");
     }
@@ -122,11 +125,7 @@ public class Menu {
         +"\t2. Cave of Thread\n"
         +"-----------------------------");
         int mapChoice = cc.mapChoiceChecker();
-        if (mapChoice ==1) {
-            // map initialise Forest of streams
-        } else {
-            // map initialise cave of threads
-        }
+
         System.out.println("-----------------------------\n" +
                 "What Race do you want to play with?\n"+
                 "-----------------------------\n"
@@ -157,12 +156,27 @@ public class Menu {
             case "elf":
                 userElfCreator(classChoice, name, userMethods);
                 break;
+
         }
+
 
 
         System.out.println("Your character is being Created.\n" +
                 "Map is being loaded.\n"+
                 "+++++++++++++++++++++++++++++");
+        Map map = new Map();
+        if (mapChoice ==1) {
+
+            Session session = new Session(name,map);
+            session.start();
+            // map initialise Forest of streams
+        } else {
+            Session session = new Session(name,map);
+            session.start();
+
+            // map initialise cave of threads
+        }
+
     }
 
     private void userHumanCreator(String classChocie, String name, UserMethods userMethods) {
@@ -230,5 +244,9 @@ public class Menu {
                 "Settings – Game Settings\n" +
                 "Quit     - Quit Game\n" +
                 "-----------------------------");
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

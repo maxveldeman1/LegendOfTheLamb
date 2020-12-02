@@ -1,6 +1,9 @@
 package be.daStudios.legendOfTheLamb.utility;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ChoiceChecker {
     Keyboard keyboard = new Keyboard();
 
@@ -50,6 +53,16 @@ public class ChoiceChecker {
         }
         return choice.toLowerCase();
     }
+
+    public String commandChoiceCheck() {
+        String choice = keyboard.askForText("Your choice: ");
+        if (!choice.matches("(?i)North|East|West|South|Help|Quit")){
+            System.out.println("This is not a valid choice!");
+            choice = settingsChoiceCheck();
+        }
+        return choice.toLowerCase();
+    }
+
 
 
 

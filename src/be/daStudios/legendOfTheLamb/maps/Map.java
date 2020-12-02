@@ -1,6 +1,7 @@
 package be.daStudios.legendOfTheLamb.maps;
 
 import be.daStudios.legendOfTheLamb.rooms.Room;
+import be.daStudios.legendOfTheLamb.rooms.RoomCreation;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,36 +14,17 @@ public class Map implements Serializable {
             "of the goblins and bring back the staff of the bugbear leader.";
     private int startingX;
     private int startingY;
-    private String name;
+    private String name = "Forest of Streams";
     private Room[][] rooms;
 
+
     public Map() {
+        constructForestMapLayout();
+
     }
 
     public String getMapName() {
         return name;
-    }
-
-
-    public boolean isReachable(int x, int y) {
-        try {
-            return rooms[y][x] != null;
-        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-            return false;
-        }
-    }
-
-    public Room getRoom(int x, int y) {
-        if (isReachable(x, y)) return rooms[y][x];
-        return null;
-    }
-
-    public int getStartingX() {
-        return startingX;
-    }
-
-    public int getStartingY() {
-        return startingY;
     }
 
 
@@ -63,15 +45,13 @@ public class Map implements Serializable {
         }
     }
 
-    public static void constructForestMapLayout() {
-        Map fos = new Map();
-        fos.name = "Forest of Streams";
-        fos.rooms = new Room[40][40];
+    private void constructForestMapLayout() {
+        this.name = "Forest of Streams";
+        this.rooms = new Room[40][40];
         int[][] mapData = new int[40][40];
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < mapData.length; i++) {
             for (int j = 0; j < mapData.length; j++) {
                 {
-                    mapData[i][j] = 0;
                     goUpDown(mapData, i, j, 37, 40, 6);
                     goSideWays(mapData, i, j, 6, 9, 37);
                     goUpDown(mapData, i, j, 34, 37, 8);
@@ -103,28 +83,51 @@ public class Map implements Serializable {
                     goSideWays(mapData, i, j, 17, 28, 37);
                     goUpDown(mapData, i, j, 35, 38, 17);
                     goSideWays(mapData, i, j, 17, 22, 35);
+
+
                 }
-                fos.startingX = 6;
-                fos.startingY = 39;
+                this.startingX = 6;
+                this.startingY = 39;
+                RoomCreation roomCreation = new RoomCreation();
                 for (int o = 0; o < mapData.length; o++) {
                     for (int p = 0; p < mapData[o].length; p++) {
-                        if (mapData[o][p] == 1) fos.rooms[o][p] =  ;
+                        if (mapData[o][p] == 1) this.rooms[o][p] = roomCreation.createRandomRoom(o, p);
                     }
+//                try {
+//                    FileOutputStream fileOutputStream = new FileOutputStream(".\\maps\\" + fos.name + ".ser");
+//                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+//                    objectOutputStream.writeObject(fos);
+//                    objectOutputStream.close();
+//                    fileOutputStream.close();
+//                } catch (IOException ioe) {
+//                    ioe.printStackTrace();
+//                }
                 }
-                try {
-                    FileOutputStream fileOutputStream = new FileOutputStream(".\\maps\\" + fos.name + ".ser");
-                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-                    objectOutputStream.writeObject(fos);
-                    objectOutputStream.close();
-                    fileOutputStream.close();
-                } catch (IOException ioe) {
-                    ioe.printStackTrace();
-                }
+
+
             }
 
-
+        }
+    }
+        public int getStartingX() {
+            return startingX;
         }
 
+        public int getStartingY() {
+            return startingY;
+        }
+
+    public boolean isReachable(int x, int y) {
+        try {
+            return rooms[y][x] != null;
+        } catch (IndexOutOfBoundsException exception) {
+            return false;
+        }
+    }
+
+    public Room getRoom(int x, int y) {
+        if (isReachable(x, y)) return rooms[y][x];
+        return null;
     }
 }
 

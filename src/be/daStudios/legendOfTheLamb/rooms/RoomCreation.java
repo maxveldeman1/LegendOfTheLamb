@@ -78,22 +78,22 @@ public class RoomCreation {
         int randomRoom = random.nextInt(4);
         Room room = new NormalRoom("", 0, 0);
 
-        //TODO Uiteindelijk Array van Monsters maken als die af zijn en die ook weer random toevoegen aan monsterRoom
-        if (randomRoom == 1) {
-
-            int randomMontserRoomInfo = random.nextInt(monsterRoomInfoArray.length);
-            room = new MonsterRoom(monsterRoomInfoArray[randomMontserRoomInfo], new BugBear(), x, y);
-
-        } else if (randomRoom == 2) {
-
-            int randomItemRoomInfo = random.nextInt(itemRoomInfoArray.length);
-            room = new ItemRoom(itemRoomInfoArray[randomItemRoomInfo], new Bow(), x, y);
-
-        } else if (randomRoom == 3) {
-
-            int randomNormalRoomInfo = random.nextInt(normalRoomInfoArray.length);
-            room = new NormalRoom(normalRoomInfoArray[randomNormalRoomInfo], x, y);
-        }
+//        //TODO Uiteindelijk Array van Monsters maken als die af zijn en die ook weer random toevoegen aan monsterRoom
+//        if (randomRoom == 1) {
+//
+//            int randomMontserRoomInfo = random.nextInt(monsterRoomInfoArray.length);
+//            room = new MonsterRoom(monsterRoomInfoArray[randomMontserRoomInfo], new BugBear(), x, y);
+//
+//        } else if (randomRoom == 2) {
+//
+//            int randomItemRoomInfo = random.nextInt(itemRoomInfoArray.length);
+//            room = new ItemRoom(itemRoomInfoArray[randomItemRoomInfo], new Bow(), x, y);
+//
+//        } else if (randomRoom == 3) {
+//
+//            int randomNormalRoomInfo = random.nextInt(normalRoomInfoArray.length);
+//            room = new NormalRoom(normalRoomInfoArray[randomNormalRoomInfo], x, y);
+//        }
         return room;
     }
 
