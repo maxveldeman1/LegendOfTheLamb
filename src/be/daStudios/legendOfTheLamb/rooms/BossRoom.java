@@ -9,22 +9,14 @@ public class BossRoom implements Room{
     private boolean hasBeenCompleted;
     private Monsters monster;
     private Item item;
-    private int north;
-    private int west;
-    private int south;
-    private int east;
     private int x;
     private int y;
 
-    public BossRoom(String roomInfo, Monsters monster, Item item, int north, int west, int south, int east, int x, int y) {
+    public BossRoom(String roomInfo, Monsters monster, Item item, int x, int y) {
         setRoomInfo(roomInfo);
         setHasBeenCompleted(false);
         setMonster(monster);
         setItem(item);
-        setNorth(north);
-        setWest(west);
-        setSouth(south);
-        setEast(east);
         setX(x);
         setY(y);
     }
@@ -51,47 +43,6 @@ public class BossRoom implements Room{
     public Item getItem() {
         return this.item;
     }
-
-    @Override
-    public void setNorth(int north) {
-        this.north = north;
-    }
-
-    @Override
-    public int getNorth() {
-        return north;
-    }
-
-    @Override
-    public void setWest(int west) {
-        this.west = west;
-    }
-
-    @Override
-    public int getWest() {
-        return west;
-    }
-
-    @Override
-    public void setSouth(int south) {
-        this.south = south;
-    }
-
-    @Override
-    public int getSouth() {
-        return south;
-    }
-
-    @Override
-    public void setEast(int east) {
-        this.east = east;
-    }
-
-    @Override
-    public int getEast() {
-        return east;
-    }
-
 
     @Override
     public void setX(int x) {
