@@ -4,6 +4,14 @@ import be.daStudios.legendOfTheLamb.monsters.Monsters;
 
 public interface Room {
 
+    void setX(int x);
+
+    int getX();
+
+    void setY(int y);
+
+    int getY();
+
     void setRoomInfo(String roomInfo);
 
     String getRoomInfo();
@@ -11,6 +19,22 @@ public interface Room {
     public void setHasBeenCompleted(boolean trueOrFalse);
 
     boolean getHasBeenCompleted();
+
+    void setNorth(int north);
+
+    int getNorth();
+
+    void setWest(int west);
+
+    int getWest();
+
+    void setSouth(int south);
+
+    int getSouth();
+
+    void setEast(int east);
+
+    int getEast();
 
     //TODO op een of andere manier een bepaald aantal Enums als richting meegeven a/d constructor v/e room..
     //TODO Map maken.. Maybe Arraylist<Room>....
