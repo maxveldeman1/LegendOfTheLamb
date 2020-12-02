@@ -5,9 +5,7 @@ import be.daStudios.legendOfTheLamb.character.calculations.FeatureCalculations;
 import be.daStudios.legendOfTheLamb.character.classes.Classes;
 import be.daStudios.legendOfTheLamb.character.races.Race;
 import be.daStudios.legendOfTheLamb.items.Item;
-import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.weapons.SpellBook;
-import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
 import java.util.Scanner;
 
@@ -20,6 +18,7 @@ public class UserMethods {
 
     public void addExperience(User user, int experience) {
         user.setExperience(user.getExperience() + experience);
+        user.setCurrentHitPoints(user.getMaxHitPoints());
         checkIfIncreaseLevel(user);
     }
 
@@ -49,7 +48,7 @@ public class UserMethods {
 
 
     public void increaseHpWhenLevelUp(User user) {
-        user.setHitPoints(user.getHitPoints() + (DiceThrow.diceThrow(user.getLifeDice()) * 2));
+        user.setMaxHitPoints(user.getMaxHitPoints() + (DiceThrow.diceThrow(user.getLifeDice()) * 2));
     }
 
     public void addToBackPack(User user, Item item) {
@@ -115,7 +114,7 @@ public class UserMethods {
 //                user.getBackPack().getInventory().add(user.getClasses().getShield());
                 user.setGold(user.getClasses().getGold());
                 user.setArmourClass(fc.calculateArmourClass(user));
-                user.setHitPoints(fc.calculateHitPoints(user));
+                user.setMaxHitPoints(fc.calculateHitPoints(user));
                 user.setSpeed(fc.calculateSpeed(user));
                 user.setProficiency(fc.calculateProficiency(user));
                 break;
@@ -131,7 +130,7 @@ public class UserMethods {
 
                 user.setGold(user.getClasses().getGold());
                 user.setArmourClass(fc.calculateArmourClass(user));
-                user.setHitPoints(fc.calculateHitPoints(user));
+                user.setMaxHitPoints(fc.calculateHitPoints(user));
                 user.setSpeed(fc.calculateSpeed(user));
                 user.setProficiency(fc.calculateProficiency(user));
                 break;
@@ -147,7 +146,7 @@ public class UserMethods {
 
                 user.setGold(user.getClasses().getGold());
                 user.setArmourClass(fc.calculateArmourClass(user));
-                user.setHitPoints(fc.calculateHitPoints(user));
+                user.setMaxHitPoints(fc.calculateHitPoints(user));
                 user.setSpeed(fc.calculateSpeed(user));
                 user.setProficiency(fc.calculateProficiency(user));
                 break;

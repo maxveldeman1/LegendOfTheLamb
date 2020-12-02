@@ -14,7 +14,8 @@ public class User {
     //TODO Afwerken, Armour aantrekmethode
     //TODO Attack/Hit chance methodes?
     private String name;
-    private int hitPoints;
+    private int currentHitPoints;
+    private int maxHitPoints;
     private int armourClass;
     private int speed;
     private int initiative;
@@ -35,6 +36,14 @@ public class User {
         setClasses(classes);
         setRace(race);
         setName(name);
+        setCurrentHitPoints(maxHitPoints);
+    }
+    public void setCurrentHitPoints(int currentHitPoints) {
+        this.currentHitPoints = currentHitPoints;
+    }
+
+    public int getCurrentHitPoints() {
+        return currentHitPoints;
     }
 
     public void setGold(int gold) {
@@ -76,12 +85,12 @@ public class User {
         return proficiency;
     }
 
-    public int getHitPoints() {
-        return hitPoints;
+    public int getMaxHitPoints() {
+        return maxHitPoints;
     }
 
-    public void setHitPoints(int hitPoints) {
-        this.hitPoints = hitPoints;
+    public void setMaxHitPoints(int hitPoints) {
+        this.maxHitPoints = hitPoints;
     }
 
     public int getArmourClass() {
