@@ -102,48 +102,49 @@ public class UserMethods {
 
         switch (user.getClasses().getDescription()) {
             case ("Fighter"):
-                user.setArmourClass(fc.calculateArmourClass(user));
-                user.setHitPoints(fc.calculateHitPoints(user));
-                user.setSpeed(fc.calculateSpeed(user));
-                user.setProficiency(fc.calculateProficiency(user));
                 //increase strength
                 user.getAbilities()[0] += user.getClasses().getStrength();
                 //increase constitution
                 user.getAbilities()[1] += user.getClasses().getConstitution();
                 user.setLifeDice(user.getClasses().getLifeDice());
                 user.setBackpack(user.getClasses().getBackPack());
-                user.getBackPack().getInventory().add(user.getClasses().getChainMail());
+                user.setArmour(user.getClasses().getChainMail());
                 user.getBackPack().getInventory().add(user.getClasses().getSword());
 //                user.getBackPack().getInventory().add(user.getClasses().getShield());
                 user.setGold(user.getClasses().getGold());
-                break;
-            case ("Ranger"):
                 user.setArmourClass(fc.calculateArmourClass(user));
                 user.setHitPoints(fc.calculateHitPoints(user));
                 user.setSpeed(fc.calculateSpeed(user));
                 user.setProficiency(fc.calculateProficiency(user));
+                break;
+            case ("Ranger"):
                 user.getAbilities()[2] += user.getClasses().getDexterity();
                 user.getAbilities()[1] += user.getClasses().getConstitution();
                 user.setLifeDice(user.getClasses().getLifeDice());
                 user.setBackpack(user.getClasses().getBackPack());
                 user.getBackPack().getInventory().add(user.getClasses().getSword());
 //                user.getBackPack().getInventory().add(user.getClasses().getBow());
-                user.getBackPack().getInventory().add(user.getClasses().getLeatherArmour());
+                user.setArmour(user.getClasses().getLeatherArmour());
                 user.setGold(user.getClasses().getGold());
-                break;
-            case ("Healer"):
                 user.setArmourClass(fc.calculateArmourClass(user));
                 user.setHitPoints(fc.calculateHitPoints(user));
                 user.setSpeed(fc.calculateSpeed(user));
                 user.setProficiency(fc.calculateProficiency(user));
+                break;
+            case ("Healer"):
+
                 user.getAbilities()[3] += user.getClasses().getWisdom();
                 user.getAbilities()[5] += user.getClasses().getCharisma();
                 user.setLifeDice(user.getClasses().getLifeDice());
                 user.setBackpack(user.getClasses().getBackPack());
 //                user.getBackPack().getInventory().add(user.getClasses().getHolySymbol());
                 user.getBackPack().getInventory().add(user.getClasses().getDagger());
-                user.getBackPack().getInventory().add(user.getClasses().getClothes());
+                user.setArmour(user.getClasses().getClothes());
                 user.setGold(user.getClasses().getGold());
+                user.setArmourClass(fc.calculateArmourClass(user));
+                user.setHitPoints(fc.calculateHitPoints(user));
+                user.setSpeed(fc.calculateSpeed(user));
+                user.setProficiency(fc.calculateProficiency(user));
                 break;
 
         }
