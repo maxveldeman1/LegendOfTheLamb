@@ -48,6 +48,7 @@ public class Session implements Serializable {
         if (south != null) System.out.print("South\t");
         if (west != null) System.out.print("West");
         System.out.print("\n");
+
     }
 
     /**
