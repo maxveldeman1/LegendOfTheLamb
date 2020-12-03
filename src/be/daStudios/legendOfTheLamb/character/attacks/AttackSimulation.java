@@ -1,12 +1,16 @@
 package be.daStudios.legendOfTheLamb.character.attacks;
 
+import be.daStudios.legendOfTheLamb.Menu;
 import be.daStudios.legendOfTheLamb.character.User;
+import be.daStudios.legendOfTheLamb.character.UserMethods;
 import be.daStudios.legendOfTheLamb.character.calculations.Calculations;
 import be.daStudios.legendOfTheLamb.character.calculations.DiceThrow;
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 import be.daStudios.legendOfTheLamb.character.classes.Fighter;
 import be.daStudios.legendOfTheLamb.character.classes.Healer;
 import be.daStudios.legendOfTheLamb.character.classes.Ranger;
+import be.daStudios.legendOfTheLamb.items.Item;
+import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 import be.daStudios.legendOfTheLamb.monsters.Monsters;
 import be.daStudios.legendOfTheLamb.monsters.animal.BugBear;
 import be.daStudios.legendOfTheLamb.monsters.animal.Wolf;
@@ -18,6 +22,9 @@ import be.daStudios.legendOfTheLamb.monsters.troll.Troll;
 import be.daStudios.legendOfTheLamb.utility.ChoiceChecker;
 import be.daStudios.legendOfTheLamb.utility.Keyboard;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AttackSimulation {
     Keyboard keyboard = new Keyboard();
     Calculations c = new Calculations();
@@ -26,29 +33,78 @@ public class AttackSimulation {
     RangerAttacks ra = new RangerAttacks();
     HealerAttacks ha = new HealerAttacks();
     MonsterAttacks ma = new MonsterAttacks();
+    Menu menu = new Menu();
+    UserMethods um = new UserMethods();
+
 
     public void attackSimulation(User user, Monsters monster) {
         if (user.getWeapon() == null) {
             String input = keyboard.askForText("You have not equipped any weapon. Please type: draw + weapon to equip it");
-        }
+        } //TODO drawWeapon
+
 
         attackUntilSomebodyDies(user, monster);
 
-
-        //TODO Simulation komt dus hier
-
-
             if (user.getCurrentHitPoints() <= 0) {
                 System.out.println("You have died. Please restart from your last save.");
-                //TODO link naar save files voegen om zo de speler te kunnen laten kiezen welke save hij terug wilt laden.
+               menu.gameMenu();
             } else if (monster.getHitPoints() <= 0) {
                 System.out.println("Congratulations you have defeated " + monster.getName());
-                //TODO Items of goldcoins toevoegen aan monsters zodat deze gedropt kunnen worden na het gevecht.
-                //TODO returned een list van loot, checken of deze leeg is + kansberekening of deze iets dropt met dice.d100
-                DiceThrow.diceThrow(Dices.D100);
+                lootCoins(user, monster);
+                um.addExperience(user, monster);
+
+
+                List<Item> optionalLoot = monster.getLoot();
+                List<Item> actualLoot = new ArrayList<>();
+                for (int i = 0; i < optionalLoot.size(); i++) {
+                    if (DiceThrow.diceThrow(Dices.D100) > 50) {
+                        actualLoot.add(optionalLoot.get(i));
+                    }
+                }
+                lootingAnEnemyIfPossible(user, actualLoot);
 
             }
 
+    }
+
+    private void lootCoins(User user, Monsters monster) {
+        int goldCoins = monster.getGold();
+        user.addGold(goldCoins);
+        System.out.println(monster.getName() + " dropped " + goldCoins + " coins. They have been added to your inventory");
+    }
+
+    private void lootingAnEnemyIfPossible(User user, List<Item> actualLoot) {
+        boolean wishesToContinue = false;
+        while (!wishesToContinue) {
+            if (actualLoot.size() > 0) {
+                System.out.println("You have looted the following items:");
+                actualLoot.forEach(s -> System.out.println(s.getName()));
+                String input = keyboard.askForText("Which do you wish to keep?");
+                Item item1 = new Sword();
+                for (Item item : actualLoot) {
+                    if (item.getName().equals(input)) {
+                        item1 = item;
+                    }
+                }
+                if (user.getClasses() instanceof Healer) {
+                    if (user.getBackPack().getInventory().size() <= 15) {
+                        user.getBackPack().getInventory().add(item1);
+                        System.out.println("You have added " + item1.getName() + " to your inventory");
+                    } else {
+                        System.out.println("Your backpack is full!");
+                    }
+                } else if ( user.getBackPack().getInventory().size() <= 20) {
+                    user.getBackPack().getInventory().add(item1);
+                    System.out.println("You have added " + item1.getName() + " to your inventory");
+                } else {
+                    System.out.println("Your backpack is full!");
+                }
+
+            } else {
+                System.out.println("There was nothing to loot..");
+                wishesToContinue = true;
+            }
+        }
     }
 
     private void attackUntilSomebodyDies(User user, Monsters monster) {

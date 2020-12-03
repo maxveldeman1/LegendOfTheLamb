@@ -11,6 +11,7 @@ public class Sword implements Weapon, Serializable {
     Dices dmgDice = Dices.D10;
     private int hitChance;
     private int damage;
+    private String name = "Sword";
 
 
     public String getDescription() {
@@ -30,4 +31,8 @@ public class Sword implements Weapon, Serializable {
         this.damage = DiceThrow.diceThrow(dmgDice);
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
 }

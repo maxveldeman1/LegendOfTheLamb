@@ -9,6 +9,7 @@ public class SpellBook implements Weapon, Serializable {
     Dices attDice = Dices.D20;
     private int hitChance;
     private int damage;
+    private String name = "SpellBook";
 
 
     public String getDescription() {
@@ -25,5 +26,10 @@ public class SpellBook implements Weapon, Serializable {
     }
     public void setBasicDamage() {
         this.damage = 10;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

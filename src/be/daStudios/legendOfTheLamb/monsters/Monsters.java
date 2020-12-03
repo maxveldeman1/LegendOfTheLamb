@@ -57,6 +57,7 @@ public abstract class Monsters implements Serializable {
         this.combatRating = combatRating;
     }
 
+
     public int getArmourClass() {
         return armourClass;
     }

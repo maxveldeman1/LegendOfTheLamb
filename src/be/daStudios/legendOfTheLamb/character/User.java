@@ -59,6 +59,10 @@ public class User implements Serializable {
         return this.gold;
     }
 
+    public void addGold(int gold) {
+        setGold(getGold() + gold);
+    }
+
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }

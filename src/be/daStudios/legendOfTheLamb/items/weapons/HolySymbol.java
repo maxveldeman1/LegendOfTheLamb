@@ -10,6 +10,7 @@ public class HolySymbol implements Weapon, Serializable {
     Dices dmgDice = Dices.D6;
     private int hitChance;
     private int damage;
+    private String name = "Holy Symbol";
 
 
 
@@ -30,4 +31,8 @@ public class HolySymbol implements Weapon, Serializable {
     }
 
 
+    @Override
+    public String getName() {
+        return name;
+    }
 }
