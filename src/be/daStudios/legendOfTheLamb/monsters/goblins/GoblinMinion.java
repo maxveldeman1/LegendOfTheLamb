@@ -13,4 +13,6 @@ public class GoblinMinion extends Monsters {
         super.setCombatRating(combatRating);
 
     }
+
+
 }

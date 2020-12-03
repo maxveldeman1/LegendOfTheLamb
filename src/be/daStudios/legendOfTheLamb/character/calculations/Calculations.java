@@ -1,6 +1,8 @@
 package be.daStudios.legendOfTheLamb.character.calculations;
 
 import be.daStudios.legendOfTheLamb.character.User;
+import be.daStudios.legendOfTheLamb.monsters.Monsters;
+import be.daStudios.legendOfTheLamb.monsters.animal.BugBear;
 
 public class Calculations {
 
@@ -40,5 +42,20 @@ public class Calculations {
 ////        DiceThrow.diceThrow(player.)
 //    }
 
+    //Returns true if player attacks first.
+    public boolean calculateInitiative (User user, Monsters monster) {
+        boolean userHitsFirst = true;
+        int userThrow = DiceThrow.diceThrow(Dices.D20) + user.getAbilities()[2];
+        int enemyThrow = 0;
+        if (monster instanceof BugBear || monster instanceof WolfPackLeader) {
+            enemyThrow =  DiceThrow.diceThrow(Dices.D20) + DiceThrow.diceThrow(Dices.D20) + DiceThrow.diceThrow(Dices.D4);
+        }
+        enemyThrow = DiceThrow.diceThrow(Dices.D20) + DiceThrow.diceThrow(Dices.D20);
+        if (!(userThrow > enemyThrow)) {
+            userHitsFirst = false;
+        }
+
+        return userHitsFirst;
+    }
 
 }
