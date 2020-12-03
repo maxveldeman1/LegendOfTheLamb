@@ -1,6 +1,7 @@
 package be.daStudios.legendOfTheLamb.utility;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -72,8 +73,68 @@ public class ChoiceChecker {
         return choice.toLowerCase();
     }
 
+    public String fighterAttackCheck() {
+        String s = keyboard.askForText("Your attack Choice: ");
+        List<String> fighterAttackList = new ArrayList<>();
+        fighterAttackList.add("swordattack");
+        fighterAttackList.add("sworddance");
+        fighterAttackList.add("sworddanceenhanced");
+        fighterAttackList.add("mightyzornhau");
+
+        s = s.toLowerCase();
+           if ( s.contains(" ")) {
+               s = s.replace(" ", "");
+        }
+           if( !fighterAttackList.contains(s)) {
+               System.out.println("This is not a valid choice!");
+               s = fighterAttackCheck();
+
+           }
+           return s;
     }
 
+    public String rangerAttackCheck() {
+        String s = keyboard.askForText("Your attack Choice: ");
+        List<String> rangerAttackList = new ArrayList<>();
+        rangerAttackList.add("swordattack");
+        rangerAttackList.add("bowattack");
+        rangerAttackList.add("piercingshot");
+        rangerAttackList.add("seekershot");
+        rangerAttackList.add("arrowrain");
+
+        s = s.toLowerCase();
+        if (s.contains(" ")) {
+            s = s.replace(" ", "");
+        }
+        if (!rangerAttackList.contains(s)) {
+            System.out.println("This is not a valid choice!");
+            s = rangerAttackCheck();
+        }
+        return s;
+    }
+
+    public String healerAttackCheck(int cursingWordUseAmount) {
+        String s = keyboard.askForText("Your attack Choice: ");
+        List<String> healerAttackList = new ArrayList<>();
+        healerAttackList.add("healingword");
+        healerAttackList.add("cursingword");
+        healerAttackList.add("healingprayer");
+        healerAttackList.add("madeningprayer");
+        healerAttackList.add("godsarea");
+
+        s = s.toLowerCase();
+        if (s.contains(" ")) {
+            s = s.replace(" ", "");
+        }
+        if (!healerAttackList.contains(s)) {
+            System.out.println("This is not a valid choice!");
+            s = healerAttackCheck(cursingWordUseAmount);
+        } else if (cursingWordUseAmount > 2) {
+            System.out.println("You have used up all your Cursing Word charges.");
+            s = healerAttackCheck(cursingWordUseAmount);
+        }
+        return s;
+    }
 
 
 

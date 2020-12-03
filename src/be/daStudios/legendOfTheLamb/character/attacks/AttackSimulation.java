@@ -1,172 +1,421 @@
 package be.daStudios.legendOfTheLamb.character.attacks;
 
 import be.daStudios.legendOfTheLamb.character.User;
+import be.daStudios.legendOfTheLamb.character.calculations.Calculations;
+import be.daStudios.legendOfTheLamb.character.calculations.DiceThrow;
+import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 import be.daStudios.legendOfTheLamb.character.classes.Fighter;
 import be.daStudios.legendOfTheLamb.character.classes.Healer;
 import be.daStudios.legendOfTheLamb.character.classes.Ranger;
 import be.daStudios.legendOfTheLamb.monsters.Monsters;
-
-import java.util.Scanner;
+import be.daStudios.legendOfTheLamb.monsters.animal.BugBear;
+import be.daStudios.legendOfTheLamb.monsters.animal.Wolf;
+import be.daStudios.legendOfTheLamb.monsters.goblins.GoblinFighter;
+import be.daStudios.legendOfTheLamb.monsters.goblins.GoblinMinion;
+import be.daStudios.legendOfTheLamb.monsters.goblins.GoblinRanger;
+import be.daStudios.legendOfTheLamb.monsters.goblins.HobbGoblin;
+import be.daStudios.legendOfTheLamb.monsters.troll.Troll;
+import be.daStudios.legendOfTheLamb.utility.ChoiceChecker;
+import be.daStudios.legendOfTheLamb.utility.Keyboard;
 
 public class AttackSimulation {
-    Scanner keyboard = new Scanner(System.in);
+    Keyboard keyboard = new Keyboard();
+    Calculations c = new Calculations();
+    ChoiceChecker choiceChecker = new ChoiceChecker();
     FighterAttacks fa = new FighterAttacks();
     RangerAttacks ra = new RangerAttacks();
     HealerAttacks ha = new HealerAttacks();
+    MonsterAttacks ma = new MonsterAttacks();
 
     public void attackSimulation(User user, Monsters monster) {
         if (user.getWeapon() == null) {
-            System.out.println("You have not equipped any weapon. Please type: draw + weapon to equip it");
+            String input = keyboard.askForText("You have not equipped any weapon. Please type: draw + weapon to equip it");
         }
-        //TODO exception checks toevoegen
-        while (user.getCurrentHitPoints() <= 0 || monster.getHitPoints() <= 0) {
+
+        attackUntilSomebodyDies(user, monster);
+
+
+        //TODO Simulation komt dus hier
+
+
+            if (user.getCurrentHitPoints() <= 0) {
+                System.out.println("You have died. Please restart from your last save.");
+                //TODO link naar save files voegen om zo de speler te kunnen laten kiezen welke save hij terug wilt laden.
+            } else if (monster.getHitPoints() <= 0) {
+                System.out.println("Congratulations you have defeated " + monster.getName());
+                //TODO Items of goldcoins toevoegen aan monsters zodat deze gedropt kunnen worden na het gevecht.
+                //TODO returned een list van loot, checken of deze leeg is + kansberekening of deze iets dropt met dice.d100
+                DiceThrow.diceThrow(Dices.D100);
+
+            }
+
+    }
+
+    private void attackUntilSomebodyDies(User user, Monsters monster) {
+        int cursingWordCounter = 0;
+
+        while (user.getCurrentHitPoints() > 0 || monster.getHitPoints() > 0) {
+            System.out.println("Current Health: " + user.getCurrentHitPoints() + "/" + user.getMaxHitPoints());
             checkAndDisplayAttacks(user);
             int hitChancePlayer = 0;
             int hitChanceEnemy = 0;
             int damagePlayer = 0;
             int damageEnemy = 0;
             int amountHealed = 0;
+            int hitChanceEnemyIfSwordDance = 0;
+            int damageEnemyIfSwordDance = 0;
             int hitChancePlayerIfSwordDance = 0;
             int damagePlayerIfSwordDance = 0;
             int hitChancePlayerIfSwordDanceEnhanced = 0;
             int damagePlayerIfSwordDanceEnhanced = 0;
+            String attackChoice = "";
+            String attackChoiceEnemy = "";
 
-            String input = keyboard.nextLine();
+
             if (user.getClasses() instanceof Fighter) {
-                switch (input) {
-                    case "Sword Attack":
-                        int[] hitAndDmgSa = fa.swordAttack(user);
-                        hitAndDmgSa[0] = hitChancePlayer;
-                        hitAndDmgSa[1] = damagePlayer;
-                        break;
-                    case "Sword Dance":
-                        int[] hitAndDmgSd = fa.swordDance(user);
-                        hitAndDmgSd[0] = hitChancePlayer;
-                        hitAndDmgSd[1] = damagePlayer;
-                        hitAndDmgSd[2] = hitChancePlayerIfSwordDance;
-                        hitAndDmgSd[3] = damagePlayerIfSwordDance;
-                        break;
-                    case "Sword Dance Enhanced":
-                        int[] hitAndDmgSde = fa.swordDance(user);
-                        hitAndDmgSde[0] = hitChancePlayer;
-                        hitAndDmgSde[1] = damagePlayer;
-                        hitAndDmgSde[2] = hitChancePlayerIfSwordDance;
-                        hitAndDmgSde[3] = damagePlayerIfSwordDance;
-                        hitAndDmgSde[4] = hitChancePlayerIfSwordDanceEnhanced;
-                        hitAndDmgSde[5] = damagePlayerIfSwordDanceEnhanced;
-                        break;
-                    case "Mighty Zornhau":
-                        int[] mightyZornhau = fa.mightyZornhau(user);
-                        mightyZornhau[0] = hitChancePlayer;
-                        mightyZornhau[1] = damagePlayer;
+                String input = choiceChecker.fighterAttackCheck();
 
+                switch (input) {
+                    case "swordattack":
+                        int[] hitAndDmgSa = fa.swordAttack(user);
+                        hitChancePlayer = hitAndDmgSa[0];
+                        damagePlayer = hitAndDmgSa[1];
+                        attackChoice = "swordattack";
+                        break;
+                    case "sworddance":
+                        int[] hitAndDmgSd = fa.swordDance(user);
+                        hitChancePlayer = hitAndDmgSd[0] ;
+                        damagePlayer = hitAndDmgSd[1];
+                        hitChancePlayerIfSwordDance = hitAndDmgSd[2];
+                        damagePlayerIfSwordDance = hitAndDmgSd[3];
+                        attackChoice = "sworddance";
+                        break;
+                    case "sworddanceenhanced":
+                        int[] hitAndDmgSde = fa.swordDance(user);
+                        hitChancePlayer = hitAndDmgSde[0];
+                        damagePlayer = hitAndDmgSde[1];
+                        hitChancePlayerIfSwordDance = hitAndDmgSde[2];
+                        damagePlayerIfSwordDance = hitAndDmgSde[3];
+                        hitChancePlayerIfSwordDanceEnhanced = hitAndDmgSde[4];
+                        damagePlayerIfSwordDanceEnhanced = hitAndDmgSde[5];
+                        attackChoice = "sworddanceenhanced";
+                        break;
+                    case "mightyzornhau":
+                        int[] mightyZornhau = fa.mightyZornhau(user);
+                        hitChancePlayer = mightyZornhau[0];
+                        damagePlayer = mightyZornhau[1];
+                        attackChoice = "mightyzornhau";
+                        break;
                 }
             } else if (user.getClasses() instanceof Ranger) {
+                String input = choiceChecker.rangerAttackCheck();
                 switch (input) {
-                    case "Sword Attack":
+                    case "swordattack":
                         int[] hitAndDmgSa = ra.swordAttack(user);
-                        hitAndDmgSa[0] = hitChancePlayer;
-                        hitAndDmgSa[1] = damagePlayer;
+                        hitChancePlayer = hitAndDmgSa[0];
+                        damagePlayer =  hitAndDmgSa[1];
+                        attackChoice = "swordattack";
                         break;
-                    case "Bow Attack":
+                    case "bowattack":
                         int[] hitAndDmgBa = ra.bowAttack(user);
-                        hitAndDmgBa[0] = hitChancePlayer;
-                        hitAndDmgBa[1] = damagePlayer;
-
+                        hitChancePlayer = hitAndDmgBa[0];
+                        damagePlayer = hitAndDmgBa[1];
+                        attackChoice = "bowattack";
                         break;
-                    case "Piercing Shot":
+                    case "piercingshot":
                         int[] hitAndDmgPs = ra.piercingShot(user);
-                        hitAndDmgPs[0] = hitChancePlayer;
-                        hitAndDmgPs[1] = damagePlayer;
+                        hitChancePlayer =  hitAndDmgPs[0];
+                        damagePlayer = hitAndDmgPs[1];
+                        attackChoice = "piercingshot";
                         break;
-                    case "Seeker Shot":
+                    case "seekershot":
                         int[] seekerShot = ra.seekerShot(user);
-                        seekerShot[0] = hitChancePlayer;
-                        seekerShot[1] = damagePlayer;
+                        hitChancePlayer = seekerShot[0];
+                        damagePlayer = seekerShot[1];
+                        attackChoice = "seekershot";
                         break;
-                    case "Arrow Rain":
+                    case "arrowrain":
                         int[] arrowRain = ra.arrowRain(user);
-                        arrowRain[0] = hitChancePlayer;
-                        arrowRain[1] = damagePlayer;
+                        hitChancePlayer = arrowRain[0];
+                        damagePlayer = arrowRain[1];
+                        attackChoice = "arrowrain";
                         break;
-
                 }
 
             } else if (user.getClasses() instanceof Healer) {
+                String input = choiceChecker.healerAttackCheck(cursingWordCounter);
                 switch (input) {
-                    case "Healing Word":
+                    case "healingword":
                         amountHealed = ha.healingWord(user);
                         hitChancePlayer = 100;
+                        attackChoice = "healingword";
                         break;
-                    case "Cursing Word":
-                        //TODO hierdoor kan enemy niet aanvallen.
-                        //TODO NOG EENS BEKIJKEN, SEEMS OVERPOWERED
-//                        int[] hitAndDmgCw = ha.cursingWord(user);
-//                        hitAndDmgCw[0] = hitChancePlayer;
-//                        hitAndDmgCw[1] = damagePlayer;
+                    case "cursingword":
+                        int[] hitAndDmgCw = ha.cursingWord(user);
+                        cursingWordCounter++;
+                        hitChancePlayer = hitAndDmgCw[0];
+                        damagePlayer = hitAndDmgCw[1];
+                        attackChoice = "cursingword";
                         break;
-                    case "Healing Prayer":
+                    case "healingprayer":
                         amountHealed = ha.healingPrayer(user);
+                        hitChancePlayer = 100;
+                        attackChoice = "healingprayer";
                         break;
-                    case "Madening Prayer":
-                        //TODO Eens bekijken hoe exact uit te werken.. creature valt zichzelf aan als hij verliest met het DiceThrowen...
+                    case "madeningprayer":
+                        attackChoice = "madeningprayer";
+                        hitChancePlayer = ha.madeningPrayer(user);
+
                         break;
-                    case "Gods Area":
+                    case "godsarea":
                         int[] godsArea = ha.godsArea(user);
-                        godsArea[0] = amountHealed;
-                        godsArea[1] = damagePlayer;
+                        amountHealed = godsArea[0];
+                        damagePlayer = godsArea[1];
+                        attackChoice = "godsarea";
                         break;
                 }
             }
 
-            //TODO Simulation komt dus hier
+            if (monster instanceof GoblinMinion) {
+                int[] hitAndDmgGM = ma.goblinMinionAttack();
+                hitChanceEnemy = hitAndDmgGM[0];
+                damageEnemy = hitAndDmgGM[1];
+            } else if (monster instanceof GoblinFighter) {
+                int[] hitAndDmgGF = ma.goblinFighterAttack();
+                hitChanceEnemy = hitAndDmgGF[0];
+                damageEnemy = hitAndDmgGF[1];
+            } else if (monster instanceof GoblinRanger) {
+                int[] hitAndDmgGR = ma.goblinRangerAttack();
+                hitChanceEnemy = hitAndDmgGR[0];
+                damageEnemy = hitAndDmgGR[1];
+            } else if (monster instanceof HobbGoblin) {
+                int[] hitAndDmgHG = ma.hobbGoblinAttack();
+                hitChanceEnemy = hitAndDmgHG[0];
+                damageEnemy = hitAndDmgHG[1];
+            } else if (monster instanceof Wolf) {
+                int[] hitAndDmgWolf = ma.wolfAttack();
+                hitChanceEnemy = hitAndDmgWolf[0];
+                damageEnemy = hitAndDmgWolf[1];
+            } else if (monster instanceof BugBear) {
+                if (DiceThrow.diceThrow(Dices.D20) > 13) {
+                    int[] hitAndDmgBB = ma.bugBearSwordDanceAttack();
+                    hitChanceEnemy = hitAndDmgBB[0];
+                    damageEnemy = hitAndDmgBB[1];
+                    hitChanceEnemyIfSwordDance = hitAndDmgBB[2];
+                    damageEnemyIfSwordDance = hitAndDmgBB[3];
+                    attackChoiceEnemy = "Double";
+                } else {
+                    int[] hitAndDmgBB = ma.bugBearSwordAttack();
+                    hitChanceEnemy = hitAndDmgBB[0];
+                    damageEnemy = hitAndDmgBB[1];
+                }
+            } else if (monster instanceof Troll) {
+                if (DiceThrow.diceThrow(Dices.D20) > 13) {
+                    int[] hitAndDmgTrollHeavy = ma.trollHeavyBlowAttack();
+                    hitChanceEnemy = hitAndDmgTrollHeavy[0];
+                    damageEnemy = hitAndDmgTrollHeavy[1];
+                } else {
+                    int[] hitAndDmgTroll = ma.trollClubAttack();
+                    hitChanceEnemy = hitAndDmgTroll[0];
+                    damageEnemy = hitAndDmgTroll[1];
+                }
+            }
+
+            adjustHealthAfterCombat(user, monster, hitChancePlayer, hitChanceEnemy, damagePlayer, damageEnemy, amountHealed,
+                    hitChancePlayerIfSwordDance,damagePlayerIfSwordDance,  hitChancePlayerIfSwordDanceEnhanced, damagePlayerIfSwordDanceEnhanced, attackChoice,
+                    hitChanceEnemyIfSwordDance, damageEnemyIfSwordDance, attackChoiceEnemy);
+        }
+    }
+
+    private void adjustHealthAfterCombat(User user, Monsters monster, int hitChancePlayer, int hitChanceEnemy, int damagePlayer, int damageEnemy,
+                                         int amountHealed, int hitChancePlayerIfSworeDance, int damagePlayerIfSwordDance, int hitChancePlayerIfSwordDanceEnhanced,
+                                         int damagePlayerIfSwordDanceEnhanced, String attackChoice, int hitChanceEnemyIfSwordDance, int damageEnemyIfSwordDance,
+                                         String attackChoiceEnemy) {
 
 
-            if (user.getMaxHitPoints() <= 0) {
-                System.out.println("You have died. Please restart from your last save.");
-                //TODO link naar save files voegen om zo de speler te kunnen laten kiezen welke save hij terug wilt laden.
-            } else if (monster.getHitPoints() <= 0) {
-                System.out.println("Congratulations you have defeated your enemy");
-                //TODO Items of goldcoins toevoegen aan monsters zodat deze gedropt kunnen worden na het gevecht.
-//            if()
+        //TODO monster attack genereren + aanvallen invoeren.
+
+
+        if (attackChoice.equals("madeningprayer") && hitChancePlayer > DiceThrow.diceThrow(Dices.D20) + 17) {
+            monster.setHitPoints(monster.getHitPoints() - damageEnemy);
+            System.out.println("The monster was so stupid enough to hit himself for " + damageEnemy + " damage");
+
+        } else if (attackChoice.equals("madeningprayer") && hitChancePlayer < DiceThrow.diceThrow(Dices.D20) + 17) {
+            if (hitChanceEnemy > user.getArmourClass()) {
+
+                user.setCurrentHitPoints(user.getCurrentHitPoints() - damageEnemy);
+                System.out.println(monster.getName() + "dealt " + damageEnemy + " damage");
+
+            } else {
+                System.out.println("The enemy missed");
+            }
+        } else if (c.calculateInitiative(user, monster)) {
+            if (hitChancePlayer > monster.getArmourClass()) {
+                attackSwordDance(monster, damagePlayer, attackChoice);
+
+                attackSwordDanceEnhanced(monster, damagePlayer, attackChoice);
+
+                attackEqualsHealing(user, amountHealed, attackChoice);
+                monster.setHitPoints(monster.getHitPoints() - damagePlayer);
+                ifDealtDamage(damagePlayer);
+            } else {
+                System.out.println("You missed your attack");
+            }
+            if (monster.getHitPoints() > 0) {
+                if (!attackChoice.equals("cursingword")) {
+                    if (hitChanceEnemy > user.getArmourClass()) {
+                        usedIfSwordDanceEnemy(monster, user, damageEnemy, attackChoiceEnemy);
+                        user.setCurrentHitPoints(user.getCurrentHitPoints() - damageEnemy);
+                        System.out.println(monster.getName() + "dealt " + damageEnemy + " damage");
+                    } else {
+                        System.out.println("The enemy missed");
+                    }
+                } else {
+                    System.out.println("The Enemy has been cursed, causing it to not being able to attack for 1 turn.");
+                }
+            }
+        } else {
+            if (!attackChoice.equals("cursedword")) {
+            if (hitChanceEnemy > user.getArmourClass()) {
+                usedIfSwordDanceEnemy(monster, user, damageEnemy, attackChoiceEnemy);
+                    user.setCurrentHitPoints(user.getCurrentHitPoints() - damageEnemy);
+                    System.out.println(monster.getName() + "dealt " + damageEnemy + " damage");
+
+                } else {
+                    System.out.println("The enemy missed");
+                }
+            } else {
+                System.out.println("The Enemy has been cursed, causing it to not being able to attack for 1 turn.");
+            }
+            if (user.getCurrentHitPoints() > 0) {
+
+
+                if (hitChancePlayer > monster.getArmourClass()) {
+                    attackSwordDance(monster, damagePlayer, attackChoice);
+
+                    attackSwordDanceEnhanced(monster, damagePlayer, attackChoice);
+
+                    attackEqualsHealing(user, amountHealed, attackChoice);
+                    monster.setHitPoints(monster.getHitPoints() - damagePlayer);
+                    ifDealtDamage(damagePlayer);
+                } else {
+                    System.out.println("You missed your attack");
+                }
+            }
+
+
+        }
+    }
+
+    private void usedIfSwordDanceEnemy(Monsters monster, User user, int damageEnemy, String attackChoiceEnemy) {
+        if (attackChoiceEnemy.equals("Double")) {
+            user.setCurrentHitPoints(user.getCurrentHitPoints() - damageEnemy);
+            System.out.println("The Enemy attacks Twice!");
+            System.out.println(monster.getName() + "dealt " + damageEnemy + " damage");
+
+        }
+    }
+
+    private void attackSwordDanceEnhanced(Monsters monster, int damagePlayer, String attackChoice) {
+        if(attackChoice.equals("sworddanceenhanced")) {
+            System.out.println("You attack three times!");
+            monster.setHitPoints(monster.getHitPoints() - damagePlayer);
+            ifDealtDamage(damagePlayer);
+            monster.setHitPoints(monster.getHitPoints() - damagePlayer);
+            ifDealtDamage(damagePlayer);
+        }
+    }
+
+    private void attackSwordDance(Monsters monster, int damagePlayer, String attackChoice) {
+        if (attackChoice.equals("sworddance")) {
+            System.out.println("You attack twice!");
+            monster.setHitPoints(monster.getHitPoints() - damagePlayer);
+            ifDealtDamage(damagePlayer);
+        }
+    }
+
+    private void ifDealtDamage(int damagePlayer) {
+        if (damagePlayer != 0) {
+            System.out.println("You dealt " + damagePlayer + " damage");
+        }
+    }
+
+    private void attackEqualsHealing(User user, int amountHealed, String attackChoice) {
+        if (attackChoice.equals("healingword") || attackChoice.equals("healingprayer") || attackChoice.equals("godsarea")) {
+            if (user.getCurrentHitPoints() == user.getMaxHitPoints()) {
+                System.out.println("You are already at full health");
+            } else {
+                user.setCurrentHitPoints(user.getCurrentHitPoints() + amountHealed);
+                int healthChange = amountHealed;
+
+                if (user.getCurrentHitPoints() > user.getMaxHitPoints()) {
+                    healthChange -= user.getCurrentHitPoints() - user.getMaxHitPoints();
+                    user.setCurrentHitPoints(user.getMaxHitPoints());
+
+                }
+
+                System.out.println("You have healed yourself: " + healthChange);
             }
         }
     }
 
-        private void checkAndDisplayAttacks (User user){
+    private void checkAndDisplayAttacks (User user){
             if (user.getClasses() instanceof Fighter) {
-                System.out.println("Please choose which attack you would like to use:");
-                System.out.println("Sword Attack");
-                if (user.getLevel() >= 3) {
-                    System.out.println("Sword Dance");
-                } else if (user.getLevel() >= 4) {
-                    System.out.println("Sword Dance Enhanced");
-                } else if (user.getLevel() >= 5) {
-                    System.out.println("Mighty Zornhau");
-                }
+
+                checkLevelAndDisplayFighterAttacks(user);
             } else if (user.getClasses() instanceof Ranger) {
-                System.out.println("Please choose which attack you would like to use:");
-                System.out.println("Sword Attack");
-                System.out.println("Bow Attack");
-                if (user.getLevel() >= 3) {
-                    System.out.println("Piercing Shot");
-                } else if (user.getLevel() >= 4) {
-                    System.out.println("Seeker Shot");
-                } else if (user.getLevel() >= 5) {
-                    System.out.println("Arrow Rain");
-                }
+
+                checkLevelAndDisplayRangerAttacks(user);
             } else if (user.getClasses() instanceof Healer) {
-                System.out.println("Please choose which attack you would like to use:");
-                System.out.println("Healing Word");
-                System.out.println("Cursing Word");
-                if (user.getLevel() >= 3) {
-                    System.out.println("Healing Prayer");
-                } else if (user.getLevel() >= 4) {
-                    System.out.println("Madening Prayer");
-                } else if (user.getLevel() >= 5) {
-                    System.out.println("Gods Area");
-                }
+
+                checkLevelAndDisplayHealerAttacks(user);
             }
         }
+
+    private void checkLevelAndDisplayHealerAttacks(User user) {
+        System.out.println("Please choose which attack you would like to use:");
+        System.out.println("Healing Word");
+        System.out.println("Cursing Word");
+        if (user.getLevel() >= 3) {
+            System.out.println("Healing Prayer");
+        } else if (user.getLevel() >= 4) {
+            System.out.println("Madening Prayer");
+        } else if (user.getLevel() >= 5) {
+            System.out.println("Gods Area");
+        }
+    }
+
+    private void checkLevelAndDisplayRangerAttacks(User user) {
+        System.out.println("Please choose which attack you would like to use:");
+        System.out.println("Sword Attack");
+        System.out.println("Bow Attack");
+        if (user.getLevel() >= 3) {
+            System.out.println("Piercing Shot");
+        } else if (user.getLevel() >= 4) {
+            System.out.println("Seeker Shot");
+        } else if (user.getLevel() >= 5) {
+            System.out.println("Arrow Rain");
+        }
+    }
+
+    private void checkLevelAndDisplayFighterAttacks(User user) {
+        System.out.println("Please choose which attack you would like to use:");
+        System.out.println("Sword Attack");
+        if (user.getLevel() >= 3) {
+            System.out.println("Sword Dance");
+        } else if (user.getLevel() >= 4) {
+            System.out.println("Sword Dance Enhanced");
+        } else if (user.getLevel() >= 5) {
+            System.out.println("Mighty Zornhau");
+        }
+    }
+
+    public void checkIfLevelIsHighEnough(User user, int level, Monsters monster) {
+
+        if (!(user.getLevel() >= level)) {
+            System.out.println("Your level is not high enough to use this attack.");
+            attackUntilSomebodyDies(user, monster);
+        }
+    }
     }
 
