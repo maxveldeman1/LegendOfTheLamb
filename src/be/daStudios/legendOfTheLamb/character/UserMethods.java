@@ -5,7 +5,11 @@ import be.daStudios.legendOfTheLamb.character.calculations.FeatureCalculations;
 import be.daStudios.legendOfTheLamb.character.classes.Classes;
 import be.daStudios.legendOfTheLamb.character.races.Race;
 import be.daStudios.legendOfTheLamb.items.Item;
+import be.daStudios.legendOfTheLamb.items.armour.Armour;
+import be.daStudios.legendOfTheLamb.items.armour.ChainMail;
 import be.daStudios.legendOfTheLamb.items.weapons.SpellBook;
+import be.daStudios.legendOfTheLamb.items.weapons.Sword;
+import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
 import java.util.Scanner;
 
@@ -82,16 +86,33 @@ public class UserMethods {
         }
     }
 
-//    public void wearArmour(Armour armour) {
-//
-//    }
-//
-//    public void drawWeapon(String weapon, User user) {
-//
-//
-//        user.getBackPack().getInventory().stream().filter(s -> s.equals(weapon));
-//        user.setWeapon(user.getBackPack().getInventory());
-//    }
+    public void wearArmour(Armour armour, User user) {
+        Armour drawedArmour = new ChainMail();
+        boolean containsArmour = user.getBackPack().getInventory().contains(armour);
+        if (containsArmour) {
+            drawedArmour = (Armour) user.getBackPack().getInventory().get(user.getBackPack().getInventory().indexOf(armour));
+            if (user.getArmour() != null) {
+                user.getBackPack().getInventory().add(user.getArmour());
+            }
+        } else {
+            System.out.println("You have no such Armour in your inventory");
+        }
+        user.setArmour(drawedArmour);
+    }
+
+    public void drawWeapon(Weapon weapon, User user) {
+        Weapon drawedWeapon = new Sword();
+        boolean containsWeapon = user.getBackPack().getInventory().contains(weapon);
+        if (containsWeapon) {
+           drawedWeapon = (Weapon) user.getBackPack().getInventory().get(user.getBackPack().getInventory().indexOf(weapon));
+           if (user.getWeapon() != null) {
+               user.getBackPack().getInventory().add(user.getWeapon());
+           }
+        } else {
+            System.out.println("You have no such Weapon in your inventory");
+        }
+        user.setWeapon(drawedWeapon);
+    }
 
 
     public User createUser(Classes classes, Race race, String name) {
