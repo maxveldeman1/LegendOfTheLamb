@@ -1,5 +1,6 @@
 package be.daStudios.legendOfTheLamb.utility;
 
+import java.io.Serializable;
 import java.util.Scanner;
 /**
  * Utility class for making a keyboard and asking for an input, but also checks it with Exception Handling if needed,
@@ -12,7 +13,7 @@ import java.util.Scanner;
  *
  * @see Scanner;
  */
-public class Keyboard {
+public class Keyboard{
     Scanner keyboard = new Scanner(System.in);
     String answer;
     int number;

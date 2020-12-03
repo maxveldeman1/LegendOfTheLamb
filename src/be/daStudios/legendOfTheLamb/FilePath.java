@@ -1,7 +1,7 @@
 package be.daStudios.legendOfTheLamb;
 
 public enum FilePath {
-    STANDARD_PATH(System.getProperty("user.home") + "\\Legend of the Lamb\\savegames\\SaveFile.sav");
+    STANDARD_PATH(System.getProperty("user.home") + "\\Legend of the Lamb\\savegames\\");
 
     private final String path;
 

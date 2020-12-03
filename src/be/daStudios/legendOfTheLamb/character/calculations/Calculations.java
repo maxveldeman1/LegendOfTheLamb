@@ -3,6 +3,7 @@ package be.daStudios.legendOfTheLamb.character.calculations;
 import be.daStudios.legendOfTheLamb.character.User;
 import be.daStudios.legendOfTheLamb.monsters.Monsters;
 import be.daStudios.legendOfTheLamb.monsters.animal.BugBear;
+import be.daStudios.legendOfTheLamb.monsters.animal.WolfPackLeader;
 
 public class Calculations {
 

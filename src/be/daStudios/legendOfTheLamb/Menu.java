@@ -19,6 +19,8 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.DosFileAttributes;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,6 +29,7 @@ public class Menu {
     ChoiceChecker choiceChecker = new ChoiceChecker();
     static String username = null;
     String password = null;
+
     public void bootUpMenu(){
         System.out.println("+++++++++++++++++++++++++++++\n" +
                 "++ Legend of the Lamb – DA ++\n" +
@@ -41,7 +44,6 @@ public class Menu {
 
     public void gameMenu(){
       String choice;
-
       do {
           printMenu();
           choice = choiceChecker.choiceCheckerStep1();
@@ -51,22 +53,10 @@ public class Menu {
                   createNewGame(choiceChecker);
                   break;
               case "load":
-                  Path path = Path.of(FilePath.STANDARD_PATH.toString());
-                  try (
-                  FileInputStream fileInputStream = new FileInputStream(FilePath.STANDARD_PATH.toString());
-                  ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                  ){
-                     Session session = (Session) objectInputStream.readObject();
-
-                      session.continueSession();
-
-
-                  } catch(IOException | ClassNotFoundException eofException){
-                      eofException.printStackTrace();
-                  }
-//
+                  loadGame();
                   break;
               case "reset":
+                  resetSaveFiles();
                   break;
               case "controls":
                   printControls();
@@ -76,6 +66,68 @@ public class Menu {
                   break;
           }
       } while (!choice.matches("(?i)Quit"));
+    }
+
+    private void resetSaveFiles() {
+        Path path = Path.of(FilePath.STANDARD_PATH.toString());
+        File f = new File (path.toString());
+        File[] matches =f.listFiles((f1, name) -> name.endsWith(".sav"));
+        assert matches != null;
+        if(matches.length !=0){
+           try {  System.out.println("Which save do you want to delete?");
+               System.out.println("\t"+1+". All saved games");
+               for (int i = 0; i< Objects.requireNonNull(matches).length; i++){
+                   System.out.println("\t"+(i+2)+". "+matches[i].getName().replace(".sav",""));
+               }
+
+               int saveChoice = choiceChecker.saveChoice(Objects.requireNonNull(matches).length+1);
+               if (saveChoice == 1) {
+                   for (int i = 0; i < Objects.requireNonNull(matches).length; i++) {
+                       path = Path.of(FilePath.STANDARD_PATH.toString() + matches[i].getName());
+                       Files.delete(path);
+                   }
+
+               } else {
+                   path = Path.of(FilePath.STANDARD_PATH.toString()+matches[saveChoice-2].getName());
+                   Files.delete(path);
+               }
+           }catch (IOException io){
+               System.out.println("Oops! Something went wrong!");
+           }
+
+
+        } else {
+            System.out.println("There are no save files yet");
+        }
+    }
+
+    private void loadGame() {
+        Path path = Path.of(FilePath.STANDARD_PATH.toString());
+        File f = new File (path.toString());
+        File[] matches =f.listFiles((f1, name) -> name.endsWith(".sav"));
+        assert matches != null;
+        if(matches.length !=0){
+            System.out.println("Which save do you want to load?");
+            for (int i = 0; i< Objects.requireNonNull(matches).length; i++){
+                System.out.println("\t"+(i+1)+". "+matches[i].getName().replace(".sav",""));
+            }
+            int saveChoice = choiceChecker.saveChoice(Objects.requireNonNull(matches).length);
+
+            try (
+                    FileInputStream fileInputStream = new FileInputStream(FilePath.STANDARD_PATH.toString()+matches[saveChoice-1].getName());
+                    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            ){
+                Session session = (Session) objectInputStream.readObject();
+                session.continueSession();
+
+
+            } catch(IOException | ClassNotFoundException eofException){
+                eofException.printStackTrace();
+            }
+
+        } else {
+            System.out.println("There are no save files yet");
+        }
     }
 
     private void settingsMenu(){
