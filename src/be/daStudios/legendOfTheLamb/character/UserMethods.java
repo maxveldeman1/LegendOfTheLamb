@@ -10,6 +10,7 @@ import be.daStudios.legendOfTheLamb.items.armour.ChainMail;
 import be.daStudios.legendOfTheLamb.items.weapons.SpellBook;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
+import be.daStudios.legendOfTheLamb.monsters.Monsters;
 
 import java.util.Scanner;
 
@@ -20,7 +21,21 @@ public class UserMethods {
     Scanner keyboard = new Scanner(System.in);
 
 
-    public void addExperience(User user, int experience) {
+    public void addExperience(User user, Monsters monster) {
+        int experience = 0;
+        if (monster.getCombatRating() == 0) {
+            experience = 10;
+        } else if (monster.getCombatRating() == 1) {
+            experience = 50;
+        } else if (monster.getCombatRating() == 2) {
+            experience = 150;
+        } else if (monster.getCombatRating() == 3) {
+            experience = 200;
+        } else if (monster.getCombatRating() == 4) {
+            experience = 400;
+        } else if (monster.getCombatRating() == 5) {
+            experience = 1000;
+        }
         user.setExperience(user.getExperience() + experience);
         user.setCurrentHitPoints(user.getMaxHitPoints());
         checkIfIncreaseLevel(user);
@@ -28,27 +43,30 @@ public class UserMethods {
 
     //Methode om te checken of een speler bij het verkrijgen van experience, een level omhoog gaat.
     public void checkIfIncreaseLevel(User user) {
-       if (user.getExperience() < 250) {
-           user.setLevel(1);
-       }
-        else if  (user.getExperience() >= 250 || user.getExperience() < 700) {
+       if  (user.getExperience() >= 250 || user.getExperience() < 700) {
             user.setLevel(2);
             user.setProficiency(fc.calculateProficiency(user));
             increaseHpWhenLevelUp(user);
+           System.out.println("Congratulations you've reached level 2!");
         } else if (user.getExperience() >= 700 || user.getExperience() < 1500) {
             user.setLevel(3);
            user.setProficiency(fc.calculateProficiency(user));
            increaseHpWhenLevelUp(user);
+           System.out.println("Congratulations you've reached level 3!");
         } else if (user.getExperience() >= 1500 || user.getExperience() < 3500) {
             user.setLevel(4);
            user.setProficiency(fc.calculateProficiency(user));
            increaseHpWhenLevelUp(user);
+           System.out.println("Congratulations you've reached level 4!");
         } else if (user.getExperience() >= 3500) {
             user.setLevel(5);
            user.setProficiency(fc.calculateProficiency(user));
            increaseHpWhenLevelUp(user);
+           System.out.println("Congratulations you've reached the maximum level!");
+           System.out.println("You have unlocked the achievement: I like to waste my time. ");
         }
     }
+
 
 
     public void increaseHpWhenLevelUp(User user) {

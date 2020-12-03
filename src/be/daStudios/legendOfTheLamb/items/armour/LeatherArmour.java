@@ -6,6 +6,7 @@ public class LeatherArmour implements Armour, Serializable {
     private String description = " A rough animal hide that is tanned and tailored to the user. Great for agile work.";
     private int armourBase =8;
     private int AC = 8;
+    private String name = "Leather Armour";
 
 
     public String getDescription() {
@@ -30,5 +31,10 @@ public class LeatherArmour implements Armour, Serializable {
 
     public void setAC(int AC) {
         this.AC = AC;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

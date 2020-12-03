@@ -6,6 +6,7 @@ public class Clothes implements Armour, Serializable {
     private String description = "A linen or woolen tunic that will rip with the slightest touch.";
     private int armourBase = 4;
     private int AC = 4;
+    private String name = "Clothes";
 
 
 
@@ -31,5 +32,10 @@ public class Clothes implements Armour, Serializable {
 
     public void setAC(int AC) {
         this.AC = AC;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

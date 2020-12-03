@@ -12,6 +12,7 @@ public class Bow implements Weapon, Serializable {
     Dices dmgDice = Dices.D12;
     private int hitChance;
     private int damage;
+    private String name = "Bow";
 
 
 
@@ -29,5 +30,10 @@ public class Bow implements Weapon, Serializable {
     }
     public void setDamage() {
         this.damage = DiceThrow.diceThrow(dmgDice);
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }
