@@ -1,6 +1,8 @@
 package be.daStudios.legendOfTheLamb.items.armour;
 
-public class LeatherArmour implements Armour{
+import java.io.Serializable;
+
+public class LeatherArmour implements Armour, Serializable {
     private String description = " A rough animal hide that is tanned and tailored to the user. Great for agile work.";
     private int armourBase =8;
     private int AC = 8;

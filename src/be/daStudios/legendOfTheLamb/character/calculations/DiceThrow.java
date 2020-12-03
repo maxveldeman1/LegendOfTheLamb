@@ -7,7 +7,7 @@ public class DiceThrow {
 
     public static int diceThrow(Dices dices) {
         Random random = new Random();
-        return random.nextInt(dices.maxThrow);
+        return random.nextInt(dices.maxThrow+1);
 
     }
 

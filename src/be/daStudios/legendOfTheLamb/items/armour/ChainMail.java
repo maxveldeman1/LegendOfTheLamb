@@ -1,6 +1,8 @@
 package be.daStudios.legendOfTheLamb.items.armour;
 
-public class ChainMail implements Armour{
+import java.io.Serializable;
+
+public class ChainMail implements Armour, Serializable  {
     private String description = "Many small rings make one big strong jacket.";
     int AC = 10;
     private String Penalty = "Sneaking, makes noise";

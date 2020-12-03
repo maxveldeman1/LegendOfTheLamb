@@ -1,5 +1,7 @@
 package be.daStudios.legendOfTheLamb.items;
 
-public interface Item {
+import java.io.Serializable;
+
+public interface Item extends Serializable {
     
 }

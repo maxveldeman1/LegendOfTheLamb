@@ -1,6 +1,8 @@
 package be.daStudios.legendOfTheLamb.character.races;
 
-public interface Race {
+import java.io.Serializable;
+
+public interface Race extends Serializable {
     public String getDescription();
 
     public int getHitPoints();

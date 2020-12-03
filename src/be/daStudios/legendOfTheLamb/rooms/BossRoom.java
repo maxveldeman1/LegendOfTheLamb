@@ -3,22 +3,23 @@ package be.daStudios.legendOfTheLamb.rooms;
 import be.daStudios.legendOfTheLamb.items.Item;
 import be.daStudios.legendOfTheLamb.monsters.Monsters;
 
-public class BossRoom implements Room{
+import java.io.Serializable;
+
+public class BossRoom implements Room, Serializable {
 
     private String roomInfo;
     private boolean hasBeenCompleted;
     private Monsters monster;
     private Item item;
-    private int x;
-    private int y;
 
-    public BossRoom(String roomInfo, Monsters monster, Item item, int x, int y) {
+
+    public BossRoom(String roomInfo, Monsters monster, Item item) {
         setRoomInfo(roomInfo);
         setHasBeenCompleted(false);
         setMonster(monster);
         setItem(item);
-        setX(x);
-        setY(y);
+
+
     }
 
     public void setMonster(Monsters monster) {
@@ -44,25 +45,6 @@ public class BossRoom implements Room{
         return this.item;
     }
 
-    @Override
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    @Override
-    public int getX() {
-        return x;
-    }
-
-    @Override
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    @Override
-    public int getY() {
-        return y;
-    }
 
     public void setRoomInfo(String roomInfo) {
         this.roomInfo = roomInfo;

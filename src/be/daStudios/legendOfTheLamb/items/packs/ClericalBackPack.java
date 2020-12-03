@@ -3,10 +3,11 @@ package be.daStudios.legendOfTheLamb.items.packs;
 import be.daStudios.legendOfTheLamb.items.Item;
 import be.daStudios.legendOfTheLamb.items.weapons.SpellBook;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClericalBackPack implements BackPacks{
+public class ClericalBackPack implements BackPacks, Serializable {
     private List<Item> inventory = new ArrayList<>();
     private List<SpellBook> spellBookInventory = new ArrayList<>();
 

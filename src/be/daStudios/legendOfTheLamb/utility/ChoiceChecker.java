@@ -59,7 +59,16 @@ public class ChoiceChecker {
         String choice = keyboard.askForText("Your choice: ");
         if (!choice.matches("(?i)North|East|West|South|Help|Quit")){
             System.out.println("This is not a valid choice!");
-            choice = settingsChoiceCheck();
+            choice = commandChoiceCheck();
+        }
+        return choice.toLowerCase();
+    }
+
+    public String saveCheck() {
+        String choice = keyboard.askForText("Your choice: ");
+        if (!choice.matches("(?i)Yes|No")){
+            System.out.println("This is not a valid choice!");
+            choice = saveCheck();
         }
         return choice.toLowerCase();
     }
@@ -131,4 +140,3 @@ public class ChoiceChecker {
 
 
 
-}

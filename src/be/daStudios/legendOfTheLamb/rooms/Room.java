@@ -4,14 +4,6 @@ import be.daStudios.legendOfTheLamb.monsters.Monsters;
 
 public interface Room {
 
-    void setX(int x);
-
-    int getX();
-
-    void setY(int y);
-
-    int getY();
-
     void setRoomInfo(String roomInfo);
 
     String getRoomInfo();

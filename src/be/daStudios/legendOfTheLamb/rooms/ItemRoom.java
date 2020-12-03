@@ -1,21 +1,21 @@
 package be.daStudios.legendOfTheLamb.rooms;
 
+import be.daStudios.legendOfTheLamb.character.User;
 import be.daStudios.legendOfTheLamb.items.Item;
 
-public class ItemRoom implements Room {
+import java.io.Serializable;
+
+public class ItemRoom implements Room, Serializable {
 
     private String roomInfo;
     private boolean hasBeenCompleted;
     private Item item;
-    private int x;
-    private int y;
 
-    public ItemRoom(String roomInfo, Item item, int x,  int y) {
+    public ItemRoom(String roomInfo, Item item) {
         setRoomInfo(roomInfo);
         setHasBeenCompleted(false);
         setItem(item);
-        setX(x);
-        setY(y);
+
 
     }
 
@@ -35,26 +35,6 @@ public class ItemRoom implements Room {
         return this.hasBeenCompleted;
     }
 
-
-    @Override
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    @Override
-    public int getX() {
-        return x;
-    }
-
-    @Override
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    @Override
-    public int getY() {
-        return y;
-    }
 
     public void setRoomInfo(String roomInfo) {
         this.roomInfo = roomInfo;

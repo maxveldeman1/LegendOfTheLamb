@@ -3,7 +3,9 @@ package be.daStudios.legendOfTheLamb.items.weapons;
 import be.daStudios.legendOfTheLamb.character.calculations.DiceThrow;
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 
-public class Sword implements Weapon {
+import java.io.Serializable;
+
+public class Sword implements Weapon, Serializable {
 
     Dices attDice = Dices.D20;
     Dices dmgDice = Dices.D10;

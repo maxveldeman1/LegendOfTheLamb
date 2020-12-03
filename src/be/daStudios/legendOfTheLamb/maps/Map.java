@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Map implements Serializable {
-    private final String description = "The forest of Streams is a large 40 by 40 map that has multiple fresh water streams running through it. It is also\n" +
+    private final String description = "The forest of Streams is a large area that has multiple fresh water streams running through it. It is also\n" +
             "home to giant wolves and a small Goblin raiders camp. The inhabitants of Streamville asked you to rid the forest\n" +
             "of the goblins and bring back the staff of the bugbear leader.";
     private int startingX;
@@ -18,9 +18,12 @@ public class Map implements Serializable {
     private Room[][] rooms;
 
 
-    public Map() {
-        constructForestMapLayout();
-
+    public Map(int choice) {
+        if( choice ==1){
+            constructForestMapLayout();
+        } else {
+            constructCaveMapLayout();
+        }
     }
 
     public String getMapName() {
@@ -45,7 +48,7 @@ public class Map implements Serializable {
         }
     }
 
-    private void constructForestMapLayout() {
+    public void constructForestMapLayout() {
         this.name = "Forest of Streams";
         this.rooms = new Room[40][40];
         int[][] mapData = new int[40][40];
@@ -91,7 +94,7 @@ public class Map implements Serializable {
                 RoomCreation roomCreation = new RoomCreation();
                 for (int o = 0; o < mapData.length; o++) {
                     for (int p = 0; p < mapData[o].length; p++) {
-                        if (mapData[o][p] == 1) this.rooms[o][p] = roomCreation.createRandomRoom(o, p);
+                        if (mapData[o][p] == 1) this.rooms[o][p] = roomCreation.createRandomRoom(p, o);
                     }
 //                try {
 //                    FileOutputStream fileOutputStream = new FileOutputStream(".\\maps\\" + fos.name + ".ser");
@@ -109,7 +112,17 @@ public class Map implements Serializable {
 
         }
     }
-        public int getStartingX() {
+
+    public void constructCaveMapLayout() {
+        System.out.println("Coming soon!");
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getStartingX() {
             return startingX;
         }
 

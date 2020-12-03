@@ -8,7 +8,9 @@ import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
-public class Ranger implements Classes{
+import java.io.Serializable;
+
+public class Ranger implements Classes, Serializable {
 
     private String description = "Ranger";
     private int baseArmour = 6;
