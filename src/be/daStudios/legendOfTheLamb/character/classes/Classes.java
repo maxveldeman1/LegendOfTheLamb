@@ -5,7 +5,9 @@ import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
 import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
-public interface Classes {
+import java.io.Serializable;
+
+public interface Classes extends Serializable {
     String getDescription();
     int getBaseArmour();
     int getStrength();

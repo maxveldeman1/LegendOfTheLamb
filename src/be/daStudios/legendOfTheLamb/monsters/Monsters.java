@@ -1,9 +1,35 @@
 package be.daStudios.legendOfTheLamb.monsters;
 
-public abstract class Monsters {
+import be.daStudios.legendOfTheLamb.items.Item;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Monsters implements Serializable {
     int hitPoints;
     int combatRating;
     int armourClass;
+    int gold;
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    List<Item> loot = new ArrayList<>();
+
+    public List<Item> getLoot() {
+        return loot;
+    }
+
+    public void setLoot(List<Item> loot) {
+        this.loot = loot;
+    }
 
     public int getHitPoints() {
         return hitPoints;
@@ -16,6 +42,16 @@ public abstract class Monsters {
     public int getCombatRating() {
         return combatRating;
     }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+
 
     public void setCombatRating(int combatRating) {
         this.combatRating = combatRating;

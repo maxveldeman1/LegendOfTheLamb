@@ -9,7 +9,9 @@ import be.daStudios.legendOfTheLamb.items.packs.ClericalBackPack;
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
 import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
-public class Healer implements Classes{
+import java.io.Serializable;
+
+public class Healer implements Classes, Serializable {
     private String description = "Healer";
     private int baseArmour = 4;
     private int wisdom = 2;

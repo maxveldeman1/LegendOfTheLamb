@@ -8,9 +8,10 @@ import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
 import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
+import java.io.Serializable;
 import java.nio.file.Watchable;
 
-public class User {
+public class User implements Serializable {
     //TODO Afwerken, Armour aantrekmethode
     //TODO Attack/Hit chance methodes?
     private String name;
@@ -31,6 +32,10 @@ public class User {
     private Dices lifeDice;
     private BackPacks backpack;
     private int gold;
+
+
+    public User() {
+    }
 
     public User (Classes classes, Race race, String name) {
         setClasses(classes);

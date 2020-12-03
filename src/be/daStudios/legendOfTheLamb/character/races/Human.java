@@ -2,7 +2,9 @@ package be.daStudios.legendOfTheLamb.character.races;
 
 import be.daStudios.legendOfTheLamb.character.Player;
 
-public class Human implements Race{
+import java.io.Serializable;
+
+public class Human implements Race, Serializable {
     private final String description = "Human";
     private int hitPoints;
     private int armourClass;

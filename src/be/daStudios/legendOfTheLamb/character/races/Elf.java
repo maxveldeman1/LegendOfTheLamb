@@ -1,6 +1,8 @@
 package be.daStudios.legendOfTheLamb.character.races;
 
-public class Elf implements Race{
+import java.io.Serializable;
+
+public class Elf implements Race, Serializable {
     private final String description = "Elf";
     private int hitPoints;
     private int armourClass;

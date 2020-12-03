@@ -3,7 +3,9 @@ package be.daStudios.legendOfTheLamb.items.weapons;
 import be.daStudios.legendOfTheLamb.character.calculations.DiceThrow;
 import be.daStudios.legendOfTheLamb.character.calculations.Dices;
 
-public class HolySymbol implements Weapon {
+import java.io.Serializable;
+
+public class HolySymbol implements Weapon, Serializable {
     Dices attDice = Dices.D20;
     Dices dmgDice = Dices.D6;
     private int hitChance;

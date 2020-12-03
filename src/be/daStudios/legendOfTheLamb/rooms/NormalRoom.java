@@ -2,17 +2,18 @@ package be.daStudios.legendOfTheLamb.rooms;
 
 import be.daStudios.legendOfTheLamb.monsters.Monsters;
 
-public class NormalRoom implements Room{
+import java.io.Serializable;
+
+public class NormalRoom implements Room, Serializable {
     private String roomInfo;
     private boolean hasBeenCompleted;
-    private int x;
-    private int y;
 
-    public NormalRoom(String roomInfo, int x, int y) {
+
+    public NormalRoom(String roomInfo) {
         setRoomInfo(roomInfo);
         setHasBeenCompleted(false);
-        setX(x);
-        setY(y);
+
+
     }
 
 
@@ -24,26 +25,6 @@ public class NormalRoom implements Room{
         return this.hasBeenCompleted;
     }
 
-
-    @Override
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    @Override
-    public int getX() {
-        return x;
-    }
-
-    @Override
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    @Override
-    public int getY() {
-        return y;
-    }
 
     public void setRoomInfo(String roomInfo) {
         this.roomInfo = roomInfo;
