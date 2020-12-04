@@ -71,6 +71,7 @@ public class UserMethods {
 
     public void increaseHpWhenLevelUp(User user) {
         user.setMaxHitPoints(user.getMaxHitPoints() + (DiceThrow.diceThrow(user.getLifeDice()) * 2));
+        user.setCurrentHitPoints(user.getMaxHitPoints());
     }
 
     public void addToBackPack(User user, Item item) {
