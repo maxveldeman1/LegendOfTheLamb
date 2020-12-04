@@ -19,6 +19,7 @@ public class Wolf extends Monsters {
         super.setGold(0);
         super.setLoot(loot);
         super.setName("Wolf");
+        super.setMaxHitPoints(this.getHitPoints());
     }
 
     public List<Item> getLoot() {

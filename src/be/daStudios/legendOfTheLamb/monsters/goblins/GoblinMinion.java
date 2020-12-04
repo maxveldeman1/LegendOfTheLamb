@@ -22,6 +22,7 @@ public class GoblinMinion extends Monsters {
         addToList();
         super.setLoot(loot);
         super.setName("Goblin Minion");
+        super.setMaxHitPoints(this.getHitPoints());
 
     }
 

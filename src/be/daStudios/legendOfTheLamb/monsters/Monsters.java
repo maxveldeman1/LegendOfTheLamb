@@ -12,6 +12,15 @@ public abstract class Monsters implements Serializable {
     int armourClass;
     int gold;
     String name;
+    int maxHitPoints;
+
+    public int getMaxHitPoints() {
+        return maxHitPoints;
+    }
+
+    public void setMaxHitPoints(int maxHitPoints) {
+        this.maxHitPoints = maxHitPoints;
+    }
 
     public String getName() {
         return name;

@@ -21,6 +21,7 @@ public class Troll extends Monsters {
         addLoot();
         super.setLoot(loot);
         super.setName("Troll");
+        super.setMaxHitPoints(this.getHitPoints());
     }
 
     public void addLoot() {

@@ -41,7 +41,6 @@ public class User implements Serializable {
         setClasses(classes);
         setRace(race);
         setName(name);
-        setCurrentHitPoints(maxHitPoints);
     }
     public void setCurrentHitPoints(int currentHitPoints) {
         this.currentHitPoints = currentHitPoints;

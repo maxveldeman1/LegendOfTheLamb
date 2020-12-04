@@ -24,6 +24,7 @@ public class BugBear extends Monsters {
         addToList();
         super.setLoot(loot);
         super.setName("Bug Bear");
+        super.setMaxHitPoints(this.getHitPoints());
 
 
     }
