@@ -43,6 +43,10 @@ public class AttackSimulation {
         } //TODO drawWeapon
 
 
+//TODO USER MAX GELIJK AAN CURRENT ZETTEN
+        //TODO CURRENT HEALTH ENEMY
+        //WHICH ENEMY
+
         attackUntilSomebodyDies(user, monster);
 
             if (user.getCurrentHitPoints() <= 0) {
@@ -110,8 +114,9 @@ public class AttackSimulation {
     private void attackUntilSomebodyDies(User user, Monsters monster) {
         int cursingWordCounter = 0;
 
-        while (user.getCurrentHitPoints() > 0 || monster.getHitPoints() > 0) {
+        while (user.getCurrentHitPoints() > 0 && monster.getHitPoints() > 0) {
             System.out.println("Current Health: " + user.getCurrentHitPoints() + "/" + user.getMaxHitPoints());
+            System.out.println("Current Health " + monster.getName() + ": " + monster.getHitPoints() + "/" + monster.getMaxHitPoints());
             checkAndDisplayAttacks(user);
             int hitChancePlayer = 0;
             int hitChanceEnemy = 0;
@@ -284,26 +289,24 @@ public class AttackSimulation {
     }
 
     private void adjustHealthAfterCombat(User user, Monsters monster, int hitChancePlayer, int hitChanceEnemy, int damagePlayer, int damageEnemy,
-                                         int amountHealed, int hitChancePlayerIfSworeDance, int damagePlayerIfSwordDance, int hitChancePlayerIfSwordDanceEnhanced,
+                                         int amountHealed, int hitChancePlayerIfSwordDance, int damagePlayerIfSwordDance, int hitChancePlayerIfSwordDanceEnhanced,
                                          int damagePlayerIfSwordDanceEnhanced, String attackChoice, int hitChanceEnemyIfSwordDance, int damageEnemyIfSwordDance,
                                          String attackChoiceEnemy) {
 
 
-        //TODO monster attack genereren + aanvallen invoeren.
-
 
         if (attackChoice.equals("madeningprayer") && hitChancePlayer > DiceThrow.diceThrow(Dices.D20) + 17) {
             monster.setHitPoints(monster.getHitPoints() - damageEnemy);
-            System.out.println("The monster was so stupid enough to hit himself for " + damageEnemy + " damage");
+            System.out.println(monster.getName() + " was so stupid enough to hit himself for " + damageEnemy + " damage");
 
         } else if (attackChoice.equals("madeningprayer") && hitChancePlayer < DiceThrow.diceThrow(Dices.D20) + 17) {
             if (hitChanceEnemy > user.getArmourClass()) {
 
                 user.setCurrentHitPoints(user.getCurrentHitPoints() - damageEnemy);
-                System.out.println(monster.getName() + "dealt " + damageEnemy + " damage");
+                System.out.println(monster.getName() + " dealt " + damageEnemy + " damage");
 
             } else {
-                System.out.println("The enemy missed");
+                System.out.println(monster.getName() + " missed");
             }
         } else if (c.calculateInitiative(user, monster)) {
             if (hitChancePlayer > monster.getArmourClass()) {
@@ -324,10 +327,10 @@ public class AttackSimulation {
                         user.setCurrentHitPoints(user.getCurrentHitPoints() - damageEnemy);
                         System.out.println(monster.getName() + "dealt " + damageEnemy + " damage");
                     } else {
-                        System.out.println("The enemy missed");
+                        System.out.println(monster.getName() +  " missed");
                     }
                 } else {
-                    System.out.println("The Enemy has been cursed, causing it to not being able to attack for 1 turn.");
+                    System.out.println(monster.getName() + " has been cursed, causing it to not being able to attack for 1 turn.");
                 }
             }
         } else {
@@ -338,10 +341,10 @@ public class AttackSimulation {
                     System.out.println(monster.getName() + "dealt " + damageEnemy + " damage");
 
                 } else {
-                    System.out.println("The enemy missed");
+                    System.out.println(monster.getName() + " missed");
                 }
             } else {
-                System.out.println("The Enemy has been cursed, causing it to not being able to attack for 1 turn.");
+                System.out.println(monster.getName() + " has been cursed, causing it to not being able to attack for 1 turn.");
             }
             if (user.getCurrentHitPoints() > 0) {
 
@@ -366,7 +369,7 @@ public class AttackSimulation {
     private void usedIfSwordDanceEnemy(Monsters monster, User user, int damageEnemy, String attackChoiceEnemy) {
         if (attackChoiceEnemy.equals("Double")) {
             user.setCurrentHitPoints(user.getCurrentHitPoints() - damageEnemy);
-            System.out.println("The Enemy attacks Twice!");
+            System.out.println(monster.getName() + " attacks Twice!");
             System.out.println(monster.getName() + "dealt " + damageEnemy + " damage");
 
         }

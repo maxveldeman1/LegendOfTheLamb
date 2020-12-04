@@ -22,6 +22,7 @@ public class HobbGoblin extends Monsters {
         addToList();
         super.setLoot(loot);
         super.setName("Hobb Goblin");
+        super.setMaxHitPoints(this.getHitPoints());
     }
 
 

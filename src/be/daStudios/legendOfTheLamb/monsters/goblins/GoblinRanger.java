@@ -23,6 +23,7 @@ public class GoblinRanger extends Monsters {
         addToList();
         super.setLoot(loot);
         super.setName("Goblin Ranger");
+        super.setMaxHitPoints(this.getHitPoints());
     }
 
 

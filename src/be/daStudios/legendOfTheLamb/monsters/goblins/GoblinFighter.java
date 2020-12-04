@@ -24,6 +24,7 @@ public class GoblinFighter extends Monsters {
         addToList();
         super.setLoot(loot);
         super.setName("Goblin Fighter");
+        super.setMaxHitPoints(this.getHitPoints());
     }
 
     public void addToList() {

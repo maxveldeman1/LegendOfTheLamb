@@ -6,12 +6,12 @@ public class FeatureCalculations {
     Calculations calculations = new Calculations();
 
     public int calculateHitPoints(User user) {
-        int hitoints = 0;
+        int hitPoints = 0;
         for (int i = 0; i < 3; i++) {
-            hitoints = DiceThrow.diceThrow(user.getLifeDice());
+            hitPoints = DiceThrow.diceThrow(user.getLifeDice());
         }
 
-        return hitoints + 10;
+        return hitPoints + 10;
     }
 
 

@@ -118,19 +118,21 @@ public class UserMethods {
         user.setArmour(drawedArmour);
     }
 
-    public void drawWeapon(Weapon weapon, User user) {
-        Weapon drawedWeapon = new Sword();
-        boolean containsWeapon = user.getBackPack().getInventory().contains(weapon);
-        if (containsWeapon) {
-           drawedWeapon = (Weapon) user.getBackPack().getInventory().get(user.getBackPack().getInventory().indexOf(weapon));
-           if (user.getWeapon() != null) {
-               user.getBackPack().getInventory().add(user.getWeapon());
-           }
-        } else {
-            System.out.println("You have no such Weapon in your inventory");
-        }
-        user.setWeapon(drawedWeapon);
-    }
+//    public void drawWeapon(String weaponInput, User user) {
+//        user.getBackPack().getInventory();
+//
+//        Weapon drawedWeapon = new Sword();
+//        boolean containsWeapon = user.getBackPack().getInventory().contains(weapon);
+//        if (containsWeapon) {
+//           drawedWeapon = (Weapon) user.getBackPack().getInventory().get(user.getBackPack().getInventory().indexOf(weapon));
+//           if (user.getWeapon() != null) {
+//               user.getBackPack().getInventory().add(user.getWeapon());
+//           }
+//        } else {
+//            System.out.println("You have no such Weapon in your inventory");
+//        }
+//        user.setWeapon(drawedWeapon);
+//    }
 
 
     public User createUser(Classes classes, Race race, String name) {
@@ -154,6 +156,7 @@ public class UserMethods {
                 user.setGold(user.getClasses().getGold());
                 user.setArmourClass(fc.calculateArmourClass(user));
                 user.setMaxHitPoints(fc.calculateHitPoints(user));
+                user.setCurrentHitPoints(user.getMaxHitPoints());
                 user.setSpeed(fc.calculateSpeed(user));
                 user.setProficiency(fc.calculateProficiency(user));
                 break;
@@ -170,6 +173,7 @@ public class UserMethods {
                 user.setGold(user.getClasses().getGold());
                 user.setArmourClass(fc.calculateArmourClass(user));
                 user.setMaxHitPoints(fc.calculateHitPoints(user));
+                user.setCurrentHitPoints(user.getMaxHitPoints());
                 user.setSpeed(fc.calculateSpeed(user));
                 user.setProficiency(fc.calculateProficiency(user));
                 break;
@@ -186,6 +190,7 @@ public class UserMethods {
                 user.setGold(user.getClasses().getGold());
                 user.setArmourClass(fc.calculateArmourClass(user));
                 user.setMaxHitPoints(fc.calculateHitPoints(user));
+                user.setCurrentHitPoints(user.getMaxHitPoints());
                 user.setSpeed(fc.calculateSpeed(user));
                 user.setProficiency(fc.calculateProficiency(user));
                 break;
