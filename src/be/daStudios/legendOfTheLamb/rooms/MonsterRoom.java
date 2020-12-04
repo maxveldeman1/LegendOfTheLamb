@@ -1,6 +1,5 @@
 package be.daStudios.legendOfTheLamb.rooms;
 
-import be.daStudios.legendOfTheLamb.items.weapons.Bow;
 import be.daStudios.legendOfTheLamb.monsters.Monsters;
 import be.daStudios.legendOfTheLamb.monsters.animal.Wolf;
 import be.daStudios.legendOfTheLamb.monsters.goblins.GoblinFighter;

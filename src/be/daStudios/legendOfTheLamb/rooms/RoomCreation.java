@@ -1,20 +1,12 @@
 package be.daStudios.legendOfTheLamb.rooms;
 
-import be.daStudios.legendOfTheLamb.character.attacks.AttackSimulation;
 import be.daStudios.legendOfTheLamb.items.Item;
 import be.daStudios.legendOfTheLamb.items.Key;
 import be.daStudios.legendOfTheLamb.items.weapons.Bow;
-import be.daStudios.legendOfTheLamb.items.weapons.Sword;
-import be.daStudios.legendOfTheLamb.monsters.Monsters;
 import be.daStudios.legendOfTheLamb.monsters.animal.BugBear;
-import be.daStudios.legendOfTheLamb.monsters.animal.Wolf;
 import be.daStudios.legendOfTheLamb.monsters.animal.WolfPackLeader;
-import be.daStudios.legendOfTheLamb.rooms.*;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
+
 
 public class RoomCreation {
     Random random = new Random();

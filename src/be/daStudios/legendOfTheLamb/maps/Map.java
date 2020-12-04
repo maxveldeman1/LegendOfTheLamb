@@ -2,16 +2,9 @@ package be.daStudios.legendOfTheLamb.maps;
 
 import be.daStudios.legendOfTheLamb.rooms.Room;
 import be.daStudios.legendOfTheLamb.rooms.RoomCreation;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class Map implements Serializable {
-    private final String description = "The forest of Streams is a large area that has multiple fresh water streams running through it. It is also\n" +
-            "home to giant wolves and a small Goblin raiders camp. The inhabitants of Streamville asked you to rid the forest\n" +
-            "of the goblins and bring back the staff of the bugbear leader.";
     private int startingX;
     private int startingY;
     private String name = "Forest of Streams";
@@ -40,8 +33,8 @@ public class Map implements Serializable {
     }
 
 
-    private static void goUpDown(int[][] map, int i, int j, int from, int untill, int posY) {
-        for (int k = from; k < untill; k++) {
+    private static void goUpDown(int[][] map, int i, int j, int from, int until, int posY) {
+        for (int k = from; k < until; k++) {
             if (map[i][j] == map[k][posY]) {
                 map[k][posY] = 1;
             }
@@ -119,7 +112,9 @@ public class Map implements Serializable {
 
 
     public String getDescription() {
-        return description;
+        return "The forest of Streams is a large area that has multiple fresh water streams running through it. It is also\n" +
+                    "home to giant wolves and a small Goblin raiders camp. The inhabitants of Streamville asked you to rid the forest\n" +
+                    "of the goblins and bring back the staff of the bugbear leader.";
     }
 
     public int getStartingX() {

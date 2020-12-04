@@ -1,6 +1,6 @@
 package be.daStudios.legendOfTheLamb.rooms;
 
-import be.daStudios.legendOfTheLamb.character.User;
+
 import be.daStudios.legendOfTheLamb.items.Item;
 
 import java.io.Serializable;

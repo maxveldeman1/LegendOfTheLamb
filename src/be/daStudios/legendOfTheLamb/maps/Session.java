@@ -69,16 +69,15 @@ public class Session implements Serializable {
             System.out.println("\nYou enter the next room...");
             System.out.println(map.getRoom(newX, newY).getRoomInfo() + "\n");
             System.out.println("A battle starts!");
+            Monsters monsters;
             if (user.getLevel() < 3){
-                Monsters monsters = ((MonsterRoom) other).createMonster();
-                AttackSimulation attackSimulation = new AttackSimulation();
-                attackSimulation.attackSimulation(user, monsters);
+                monsters = ((MonsterRoom) other).createMonster();
             } else {
-                Monsters monsters = ((MonsterRoom) other).createHighCPMonsters();
-                AttackSimulation attackSimulation = new AttackSimulation();
-                attackSimulation.attackSimulation(user, monsters);
+                monsters = ((MonsterRoom) other).createHighCPMonsters();
 
             }
+            AttackSimulation attackSimulation = new AttackSimulation();
+            attackSimulation.attackSimulation(user, monsters);
 
         } else {
             this.x = newX;
@@ -153,7 +152,7 @@ public class Session implements Serializable {
 
     public void continueSession(){
         System.out.println("-----------------------------");
-        System.out.println("\nWelcome back, !"+user.getName());
+        System.out.println("\nWelcome back, "+user.getName()+"!");
         System.out.println("-----------------------------\nType 'help' for a list of commands.\n-----------------------------\n");
         commandLoop();
 

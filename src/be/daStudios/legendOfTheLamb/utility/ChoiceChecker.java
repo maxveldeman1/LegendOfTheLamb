@@ -1,9 +1,6 @@
 package be.daStudios.legendOfTheLamb.utility;
 
-
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ChoiceChecker {

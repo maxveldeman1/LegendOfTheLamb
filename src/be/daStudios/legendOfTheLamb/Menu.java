@@ -18,8 +18,6 @@ import be.daStudios.legendOfTheLamb.utility.Keyboard;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.DosFileAttributes;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -130,7 +128,7 @@ public class Menu {
             if(saveChoice != Objects.requireNonNull(matches).length+1) {
                 try (
                         FileInputStream fileInputStream = new FileInputStream(FilePath.STANDARD_PATH.toString() + matches[saveChoice - 1].getName());
-                        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
                 ) {
                     Session session = (Session) objectInputStream.readObject();
                     session.continueSession();
@@ -335,7 +333,4 @@ public class Menu {
                 "-----------------------------");
     }
 
-    public String getUsername() {
-        return username;
-    }
 }
