@@ -23,4 +23,6 @@ public interface Classes extends Serializable {
     int getConstitution();
     Armour getLeatherArmour();
     BackPacks getBackPack();
+    Weapon getBow();
+    Weapon getHolySymbol();
 }

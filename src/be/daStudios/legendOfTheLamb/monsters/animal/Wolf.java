@@ -14,7 +14,7 @@ public class Wolf extends Monsters {
         super.setArmourClass(armourClass);
         int hitPoints = 40;
         super.setHitPoints(hitPoints);
-        int combatRating= 1/2;
+        int combatRating= 3;
         super.setCombatRating(combatRating);
         super.setGold(0);
         super.setLoot(loot);

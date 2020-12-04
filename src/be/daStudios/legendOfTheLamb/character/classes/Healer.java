@@ -7,6 +7,7 @@ import be.daStudios.legendOfTheLamb.items.armour.Clothes;
 import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
 import be.daStudios.legendOfTheLamb.items.packs.ClericalBackPack;
 import be.daStudios.legendOfTheLamb.items.weapons.Dagger;
+import be.daStudios.legendOfTheLamb.items.weapons.HolySymbol;
 import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
 import java.io.Serializable;
@@ -17,7 +18,7 @@ public class Healer implements Classes, Serializable {
     private int wisdom = 2;
     private int charisma = 1;
     private Dices lifeDice = Dices.D6;
-    //    HolySymbol Item = new HolySymbol();
+    private Weapon holySymbol = new HolySymbol();
     private Armour clothes = new Clothes();
     private ClericalBackPack clericBackPack = new ClericalBackPack();
     private int gold = 15;
@@ -90,9 +91,14 @@ public class Healer implements Classes, Serializable {
         return clericBackPack;
     }
 
-//    public HolySymbol getHolySymbol() {
-//        return HolySymbol;
-//    }
-//
+    @Override
+    public Weapon getBow() {
+        return null;
+    }
+
+    public Weapon getHolySymbol() {
+        return holySymbol;
+    }
+
 
 }
