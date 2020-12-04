@@ -9,4 +9,8 @@ public class Key implements Item, Serializable {
     }
 
 
+    @Override
+    public String getName() {
+        return null;
+    }
 }
