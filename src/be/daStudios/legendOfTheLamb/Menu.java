@@ -74,30 +74,41 @@ public class Menu {
         File[] matches =f.listFiles((f1, name) -> name.endsWith(".sav"));
         assert matches != null;
         if(matches.length !=0){
-           try {  System.out.println("Which save do you want to delete?");
+           try {
+               System.out.println("-----------------------------");
+               System.out.println("Which save do you want to delete?");
+               System.out.println("-----------------------------");
                System.out.println("\t"+1+". All saved games");
                for (int i = 0; i< Objects.requireNonNull(matches).length; i++){
                    System.out.println("\t"+(i+2)+". "+matches[i].getName().replace(".sav",""));
                }
-
-               int saveChoice = choiceChecker.saveChoice(Objects.requireNonNull(matches).length+1);
+               System.out.println("\t" +(Objects.requireNonNull(matches).length+2)+". Back");
+               System.out.println("-----------------------------");
+               int saveChoice = choiceChecker.saveChoice(Objects.requireNonNull(matches).length+2);
+               System.out.println("-----------------------------");
                if (saveChoice == 1) {
                    for (int i = 0; i < Objects.requireNonNull(matches).length; i++) {
                        path = Path.of(FilePath.STANDARD_PATH.toString() + matches[i].getName());
                        Files.delete(path);
                    }
 
+               } else if(saveChoice == Objects.requireNonNull(matches).length+2) {
+                   gameMenu();
                } else {
                    path = Path.of(FilePath.STANDARD_PATH.toString()+matches[saveChoice-2].getName());
                    Files.delete(path);
                }
            }catch (IOException io){
+               System.out.println("-----------------------------");
                System.out.println("Oops! Something went wrong!");
+               System.out.println("-----------------------------");
            }
 
 
         } else {
+            System.out.println("-----------------------------");
             System.out.println("There are no save files yet");
+            System.out.println("-----------------------------");
         }
     }
 
@@ -108,25 +119,31 @@ public class Menu {
         assert matches != null;
         if(matches.length !=0){
             System.out.println("Which save do you want to load?");
+            System.out.println("-----------------------------");
             for (int i = 0; i< Objects.requireNonNull(matches).length; i++){
                 System.out.println("\t"+(i+1)+". "+matches[i].getName().replace(".sav",""));
             }
-            int saveChoice = choiceChecker.saveChoice(Objects.requireNonNull(matches).length);
+            System.out.println("\t" +(Objects.requireNonNull(matches).length+1)+". Back");
+            System.out.println("-----------------------------");
+            int saveChoice = choiceChecker.saveChoice(Objects.requireNonNull(matches).length+1);
+            System.out.println("-----------------------------");
+            if(saveChoice != Objects.requireNonNull(matches).length+1) {
+                try (
+                        FileInputStream fileInputStream = new FileInputStream(FilePath.STANDARD_PATH.toString() + matches[saveChoice - 1].getName());
+                        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                ) {
+                    Session session = (Session) objectInputStream.readObject();
+                    session.continueSession();
 
-            try (
-                    FileInputStream fileInputStream = new FileInputStream(FilePath.STANDARD_PATH.toString()+matches[saveChoice-1].getName());
-                    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            ){
-                Session session = (Session) objectInputStream.readObject();
-                session.continueSession();
 
-
-            } catch(IOException | ClassNotFoundException eofException){
-                eofException.printStackTrace();
-            }
-
+                } catch (IOException | ClassNotFoundException eofException) {
+                    eofException.printStackTrace();
+                }
+            } else {gameMenu();}
         } else {
+            System.out.println("-----------------------------");
             System.out.println("There are no save files yet");
+            System.out.println("-----------------------------");
         }
     }
 

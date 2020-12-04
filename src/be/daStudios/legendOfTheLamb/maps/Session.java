@@ -50,6 +50,7 @@ public class Session implements Serializable {
         Room other = map.getRoom(newX, newY);
         if (other == null) {
             System.out.println("There is nothing in that direction.");
+            System.out.println("-----------------------------");
             return;
         }
         if (other instanceof DoorRoom) {
@@ -60,7 +61,7 @@ public class Session implements Serializable {
                 System.out.println(map.getRoom(newX, newY).getRoomInfo() + "\n");
 
             } else {
-                System.out.println("The door is locked");
+               other.getRoomInfo();
             }
         } else if (other instanceof MonsterRoom) {
             this.x = newX;
@@ -68,17 +69,23 @@ public class Session implements Serializable {
             System.out.println("\nYou enter the next room...");
             System.out.println(map.getRoom(newX, newY).getRoomInfo() + "\n");
             System.out.println("A battle starts!");
-            Monsters monsters = ((MonsterRoom) other).createMonster();
-            AttackSimulation attackSimulation = new AttackSimulation();
-            attackSimulation.attackSimulation(user, monsters);
+            if (user.getLevel() < 3){
+                Monsters monsters = ((MonsterRoom) other).createMonster();
+                AttackSimulation attackSimulation = new AttackSimulation();
+                attackSimulation.attackSimulation(user, monsters);
+            } else {
+                Monsters monsters = ((MonsterRoom) other).createHighCPMonsters();
+                AttackSimulation attackSimulation = new AttackSimulation();
+                attackSimulation.attackSimulation(user, monsters);
 
+            }
+
+        } else {
+            this.x = newX;
+            this.y = newY;
+            System.out.println("\nYou enter the next room...");
+            System.out.println(map.getRoom(newX, newY).getRoomInfo() + "\n");
         }
-
-        this.x = newX;
-        this.y = newY;
-        System.out.println("\nYou enter the next room...");
-        System.out.println(map.getRoom(newX, newY).getRoomInfo() + "\n");
-
     }
 
     public void showPossibleRoutes() {
@@ -87,11 +94,13 @@ public class Session implements Serializable {
         Room east = map.getRoom(x + 1, y);
         Room south = map.getRoom(x, y + 1);
         Room west = map.getRoom(x - 1, y);
-        System.out.print("Possible routes in this room:\n ");
+        System.out.println("-----------------------------");
+        System.out.println("Possible routes in this room:\n-----------------------------");
         if (north != null) System.out.print("\tNorth\n");
         if (east != null) System.out.print("\tEast\n");
         if (south != null) System.out.print("\tSouth\n");
         if (west != null) System.out.print("\tWest\n");
+        System.out.println("-----------------------------");
 
     }
 
@@ -104,72 +113,59 @@ public class Session implements Serializable {
         System.out.println("Hello " + user.getName()+"!\n");
         System.out.println("Welcome to " + map.getMapName() + "!\n");
         System.out.println(map.getDescription()+"\n");
-        System.out.println("Type 'help' for a list of commands.");
+        System.out.println("-----------------------------\nType 'help' for a list of commands.\n-----------------------------\n");
+        commandLoop();
+    }
+
+    private void commandLoop() {
         while (running) {
             showPossibleRoutes();
             ChoiceChecker choiceChecker = new ChoiceChecker();
             String userInput = choiceChecker.commandChoiceCheck();
-            switch (userInput){
+            System.out.println("-----------------------------");
+            switch (userInput) {
                 case "north":
-                    attemptMovement(0, -1); break;
+                    attemptMovement(0, -1);
+                    break;
                 case "east":
-                    attemptMovement(1, 0); break;
+                    attemptMovement(1, 0);
+                    break;
                 case "south":
-                    attemptMovement(0, 1); break;
+                    attemptMovement(0, 1);
+                    break;
                 case "west":
-                    attemptMovement(-1, 0); break;
-                case"quit":
+                    attemptMovement(-1, 0);
+                    break;
+                case "quit":
                     save();
                     close();
                     break;
                 case "help":
                     Menu.printControls();
                     break;
-                case"save":
-                    System.out.println("Saving your game!");
+                case "save":
                     save();
                     break;
 
             }
         }
     }
-    public void continueSession(){
-        System.out.println("Welcome back!");
-        System.out.println("Type 'help' for a list of commands.");
-        while (running) {
-            showPossibleRoutes();
-            ChoiceChecker choiceChecker = new ChoiceChecker();
-            String userInput = choiceChecker.commandChoiceCheck();
-            switch (userInput){
-                case "north":
-                    attemptMovement(0, -1); break;
-                case "east":
-                    attemptMovement(1, 0); break;
-                case "south":
-                    attemptMovement(0, 1); break;
-                case "west":
-                    attemptMovement(-1, 0); break;
-                case"quit":
-                    save();
-                    close();break;
-                case"help":
-                    Menu.printControls();
-                    break;
-                case"save":
-                    System.out.println("Saving your game!");
-                    save();
-                    break;
 
-            }
-        }
+    public void continueSession(){
+        System.out.println("-----------------------------");
+        System.out.println("\nWelcome back, !"+user.getName());
+        System.out.println("-----------------------------\nType 'help' for a list of commands.\n-----------------------------\n");
+        commandLoop();
 
     }
 
 
 
     public void save() {
+        System.out.println("Saving your game!\n-----------------------------");
         Keyboard keyboard = new Keyboard();
         saveName =keyboard.askForText("Name your save: ");
+        System.out.println("-----------------------------");
         Path path = Paths.get(FilePath.STANDARD_PATH.toString() + saveName + ".sav");
 
             try {
@@ -182,6 +178,7 @@ public class Session implements Serializable {
                         objectOutputStream.writeObject(this);
                         fileOutputStream.close();
                         objectOutputStream.close();
+                        System.out.println("Saved!\n-----------------------------");
                     } else {save();}
                 } else {
                     Files.createDirectories(path.getParent());
@@ -191,6 +188,7 @@ public class Session implements Serializable {
                     objectOutputStream.writeObject(this);
                     fileOutputStream.close();
                     objectOutputStream.close();
+                    System.out.println("Saved!\n-----------------------------");
                 }
 
 
@@ -200,7 +198,8 @@ public class Session implements Serializable {
     }
 
     public void close() {
-        System.out.println("Closing down game.");
+        System.out.println("-----------------------------\nClosing down game.\n-----------------------------");
+
         this.running = false;
     }
 

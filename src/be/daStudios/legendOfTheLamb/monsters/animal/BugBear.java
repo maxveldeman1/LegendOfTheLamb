@@ -18,7 +18,6 @@ public class BugBear extends Monsters {
         super.setHitPoints(hitPoints);
         int combatRating = 3;
         super.setCombatRating(combatRating);
-        Sword sword = new Sword();
         int gold =5;
         super.setGold(gold);
         addToList();
