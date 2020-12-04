@@ -174,10 +174,11 @@ public class Menu {
         System.out.println("\t\tControls\n" +
                         "-----------------------------\n" +
             "-direction-: go to direction\n"+
-            "Direction : north, south, west, east\n"+
-            "Draw -weapon- : Draw your weapon\n"+
-            "Look : Look around again\n"+
-            "Quit : Saves and goes back to main Menu\n" +
+            "Direction: north, south, west, east\n"+
+            "Draw -weapon-: Draw your weapon\n"+
+            "Look: Look around again\n"+
+                "Save: Saves the game and continues games\n"+
+            "Quit: Saves and goes back to main Menu\n" +
                 "-----------------------------");
     }
 

@@ -15,7 +15,6 @@ import java.util.Random;
 public class MonsterRoom implements Room, Serializable {
     Random random = new Random();
 
-
     private String roomInfo;
     private boolean hasBeenCompleted;
     private Monsters monster;
@@ -24,7 +23,7 @@ public class MonsterRoom implements Room, Serializable {
     public MonsterRoom(String roomInfo) {
         setRoomInfo(roomInfo);
         setHasBeenCompleted(false);
-        createMonster();
+        setMonster(createMonster());
 
     }
 
