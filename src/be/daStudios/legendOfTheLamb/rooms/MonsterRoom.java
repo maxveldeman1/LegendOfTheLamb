@@ -23,7 +23,6 @@ public class MonsterRoom implements Room, Serializable {
     public MonsterRoom(String roomInfo) {
         setRoomInfo(roomInfo);
         setHasBeenCompleted(false);
-        setMonster(createMonster());
 
     }
 
@@ -54,9 +53,9 @@ public class MonsterRoom implements Room, Serializable {
 
 
     public Monsters createMonster() {
-        int randomMonster = random.nextInt(5);
+        int randomMonster = random.nextInt(4);
+        Monsters monsters = new Wolf();
         switch (randomMonster) {
-            default: Monsters monsters = new Wolf();
             case 0:
                 monsters = new GoblinFighter();
                 setMonster(monsters);
@@ -69,17 +68,23 @@ public class MonsterRoom implements Room, Serializable {
                 monsters = new GoblinRanger();
                 setMonster(monsters);
                 break;
-            case 3:
-                monsters = new HobbGoblin();
-                setMonster(monsters);
+            case 3: monsters = new Wolf();
+            setMonster(monsters);
                 break;
-            case 4: monsters = new Troll();
-                setMonster(monsters);
-                break;
-
 
         }
-        return getMonster();
+        return monsters;
 
+    }
+
+    public Monsters createHighCPMonsters() {
+        int randomMonster = random.nextInt(2);
+        if (randomMonster ==1){
+            Monsters monsters = new Troll();
+            setMonster(monsters);
+            return monsters;
+        } Monsters monsters = new HobbGoblin();
+        setMonster(monsters);
+        return monsters;
     }
 }

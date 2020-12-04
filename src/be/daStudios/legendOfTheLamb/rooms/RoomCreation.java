@@ -2,11 +2,13 @@ package be.daStudios.legendOfTheLamb.rooms;
 
 import be.daStudios.legendOfTheLamb.character.attacks.AttackSimulation;
 import be.daStudios.legendOfTheLamb.items.Item;
+import be.daStudios.legendOfTheLamb.items.Key;
 import be.daStudios.legendOfTheLamb.items.weapons.Bow;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 import be.daStudios.legendOfTheLamb.monsters.Monsters;
 import be.daStudios.legendOfTheLamb.monsters.animal.BugBear;
 import be.daStudios.legendOfTheLamb.monsters.animal.Wolf;
+import be.daStudios.legendOfTheLamb.monsters.animal.WolfPackLeader;
 import be.daStudios.legendOfTheLamb.rooms.*;
 
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ public class RoomCreation {
     Random random = new Random();
 
     String[] itemRoomInfoArray = {"When you enter the area you notice how quiet it is. You see the sunshine flickering on an item ahead of you.." +
-            "Do you want to pick it up?", "You've entered a dark cave, there are rocks everywhere.", "Other random info", "more info"};
+            "Do you want to pick it up?", "You've entered a dark cave, there are rocks everywhere."};
     String[] monsterRoomInfoArray = {"You entered a dark cave, which smells like teen spirit",
             "As you walk on the trail through the forest, you hear the cracking of twigs...", "You look ahead of you and you see a dead corpse, this is gonna be nasty.",
             "A creature comes falling out of a tree"};
@@ -62,16 +64,16 @@ public class RoomCreation {
         Room room = new NormalRoom("");
         if (x == 26 && y == 14) {
             BugBear bugBear = new BugBear();
-            Item sword = new Sword();
+            Item key= new Key();
             //TODO ipv sword moet er een Staff komen
-            room = new BossRoom("The last boss", bugBear, sword);
+            room = new BossRoom("The last boss", bugBear, key);
 
         } else if ((x == 2 && y == 12) || (x == 2 && y == 14)) {
             room= new DoorRoom("There is a locked door in this room");
         } else if (x == 28 && y == 20) {
-            Wolf wolf = new Wolf();
+            WolfPackLeader wolfPackLeader = new WolfPackLeader();
             Item bow = new Bow();
-            room= new BossRoom("The wolf pack leader", wolf, bow);
+            room= new BossRoom("The wolf pack leader", wolfPackLeader, bow);
         } else {
             int randomRoom = random.nextInt(3);
             //TODO Uiteindelijk Array van Monsters maken als die af zijn en die ook weer random toevoegen aan monsterRoom
