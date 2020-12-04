@@ -2,8 +2,11 @@ package be.daStudios.legendOfTheLamb.maps;
 import be.daStudios.legendOfTheLamb.FilePath;
 import be.daStudios.legendOfTheLamb.Menu;
 import be.daStudios.legendOfTheLamb.character.User;
+import be.daStudios.legendOfTheLamb.character.attacks.AttackSimulation;
 import be.daStudios.legendOfTheLamb.items.Key;
+import be.daStudios.legendOfTheLamb.monsters.Monsters;
 import be.daStudios.legendOfTheLamb.rooms.DoorRoom;
+import be.daStudios.legendOfTheLamb.rooms.MonsterRoom;
 import be.daStudios.legendOfTheLamb.rooms.Room;
 import be.daStudios.legendOfTheLamb.utility.ChoiceChecker;
 import be.daStudios.legendOfTheLamb.utility.Keyboard;
@@ -22,7 +25,6 @@ public class Session implements Serializable {
     private boolean running;
     String saveName;
     public static final long serialVersionUID = 1;
-
 
 
     public Session(User user, Map map) {
@@ -50,8 +52,8 @@ public class Session implements Serializable {
             System.out.println("There is nothing in that direction.");
             return;
         }
-        if (other instanceof DoorRoom){
-            if (user.getBackPack().getInventory().stream().anyMatch(s -> s instanceof Key)){
+        if (other instanceof DoorRoom) {
+            if (user.getBackPack().getInventory().stream().anyMatch(s -> s instanceof Key)) {
                 this.x = newX;
                 this.y = newY;
                 System.out.println("\nYou enter the next room...");
@@ -60,12 +62,22 @@ public class Session implements Serializable {
             } else {
                 System.out.println("The door is locked");
             }
-        }else {
+        } else if (other instanceof MonsterRoom) {
             this.x = newX;
             this.y = newY;
             System.out.println("\nYou enter the next room...");
             System.out.println(map.getRoom(newX, newY).getRoomInfo() + "\n");
+            System.out.println("A battle starts!");
+            Monsters monsters = ((MonsterRoom) other).createMonster();
+            AttackSimulation attackSimulation = new AttackSimulation();
+            attackSimulation.attackSimulation(user, monsters);
+
         }
+
+        this.x = newX;
+        this.y = newY;
+        System.out.println("\nYou enter the next room...");
+        System.out.println(map.getRoom(newX, newY).getRoomInfo() + "\n");
 
     }
 
