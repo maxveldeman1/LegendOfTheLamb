@@ -25,16 +25,22 @@ public class UserMethods {
         int experience = 0;
         if (monster.getCombatRating() == 0) {
             experience = 10;
+            System.out.println("Experience increased by 10.");
         } else if (monster.getCombatRating() == 1) {
             experience = 50;
+            System.out.println("Experience increased by 50.");
         } else if (monster.getCombatRating() == 2) {
             experience = 150;
+            System.out.println("Experience increased by 150.");
         } else if (monster.getCombatRating() == 3) {
             experience = 200;
+            System.out.println("Experience increased by 200.");
         } else if (monster.getCombatRating() == 4) {
             experience = 400;
+            System.out.println("Experience increased by 400.");
         } else if (monster.getCombatRating() == 5) {
             experience = 1000;
+            System.out.println("Experience increased by 1000.");
         }
         user.setExperience(user.getExperience() + experience);
         user.setCurrentHitPoints(user.getMaxHitPoints());
@@ -43,17 +49,17 @@ public class UserMethods {
 
     //Methode om te checken of een speler bij het verkrijgen van experience, een level omhoog gaat.
     public void checkIfIncreaseLevel(User user) {
-       if  (user.getExperience() >= 250 || user.getExperience() < 700) {
+       if  (user.getExperience() >= 250 && user.getExperience() < 700) {
             user.setLevel(2);
             user.setProficiency(fc.calculateProficiency(user));
             increaseHpWhenLevelUp(user);
            System.out.println("Congratulations you've reached level 2!");
-        } else if (user.getExperience() >= 700 || user.getExperience() < 1500) {
+        } else if (user.getExperience() >= 700 && user.getExperience() < 1500) {
             user.setLevel(3);
            user.setProficiency(fc.calculateProficiency(user));
            increaseHpWhenLevelUp(user);
            System.out.println("Congratulations you've reached level 3!");
-        } else if (user.getExperience() >= 1500 || user.getExperience() < 3500) {
+        } else if (user.getExperience() >= 1500 && user.getExperience() < 3500) {
             user.setLevel(4);
            user.setProficiency(fc.calculateProficiency(user));
            increaseHpWhenLevelUp(user);
@@ -151,6 +157,7 @@ public class UserMethods {
                 user.setLifeDice(user.getClasses().getLifeDice());
                 user.setBackpack(user.getClasses().getBackPack());
                 user.setArmour(user.getClasses().getChainMail());
+                user.setWeapon(user.getClasses().getSword());
 
                 user.getBackPack().getInventory().add(user.getClasses().getSword());
 //                user.getBackPack().getInventory().add(user.getClasses().getShield());
@@ -170,6 +177,7 @@ public class UserMethods {
                 user.getBackPack().getInventory().add(user.getClasses().getSword());
 //                user.getBackPack().getInventory().add(user.getClasses().getBow());
                 user.setArmour(user.getClasses().getLeatherArmour());
+                user.setWeapon(user.getClasses().getBow());
 
                 user.setGold(user.getClasses().getGold());
                 user.setArmourClass(fc.calculateArmourClass(user));
@@ -187,6 +195,7 @@ public class UserMethods {
 //                user.getBackPack().getInventory().add(user.getClasses().getHolySymbol());
                 user.getBackPack().getInventory().add(user.getClasses().getDagger());
                 user.setArmour(user.getClasses().getClothes());
+                user.setWeapon(user.getClasses().getHolySymbol());
 
                 user.setGold(user.getClasses().getGold());
                 user.setArmourClass(fc.calculateArmourClass(user));

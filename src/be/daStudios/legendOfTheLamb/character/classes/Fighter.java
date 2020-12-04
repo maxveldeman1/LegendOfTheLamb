@@ -93,6 +93,16 @@ public class Fighter implements Classes, Serializable {
         return this.backPack;
     }
 
+    @Override
+    public Weapon getBow() {
+        return null;
+    }
+
+    @Override
+    public Weapon getHolySymbol() {
+        return null;
+    }
+
 //    public Item getShield() {
 //        return shield;
 //    }

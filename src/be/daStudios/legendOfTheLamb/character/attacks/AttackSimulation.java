@@ -38,14 +38,10 @@ public class AttackSimulation {
 
 
     public void attackSimulation(User user, Monsters monster) {
-        if (user.getWeapon() == null) {
-            String input = keyboard.askForText("You have not equipped any weapon. Please type: draw + weapon to equip it");
-        } //TODO drawWeapon
-
-
-//TODO USER MAX GELIJK AAN CURRENT ZETTEN
-        //TODO CURRENT HEALTH ENEMY
-        //WHICH ENEMY
+//        if (user.getWeapon() == null) {
+//            String input = keyboard.askForText("You have not equipped any weapon. Please type: draw + weapon to equip it");
+//        } //TODO drawWeapon
+//
 
         attackUntilSomebodyDies(user, monster);
 
@@ -78,70 +74,85 @@ public class AttackSimulation {
     }
 
     private void lootingAnEnemyIfPossible(User user, List<Item> actualLoot) {
+        List<Item> lootList = actualLoot;
         boolean wishesToContinue = false;
         while (!wishesToContinue) {
-            if (actualLoot.size() > 0) {
-                System.out.println("You have looted the following items:");
-                actualLoot.forEach(s -> System.out.println(s.getName()));
-                String input = keyboard.askForText("Which item do you wish to keep? Type 'none' to discard all items/Type 'all' to retrieve all items");
-                Item item1 = new Sword();
-                if (!actualLoot.isEmpty()) {
+
+
+                if (!lootList.isEmpty()) {
+                    System.out.println("The enemy has dropped the following items:");
+                    lootList.forEach(s -> System.out.println(s.getName()));
+                    String input = keyboard.askForText("Which item do you wish to keep? Type 'none' to discard all items/Type 'all' to retrieve all items");
+
                     if (input.toLowerCase().equals("none")) {
                         wishesToContinue = true;
                     } else if (input.toLowerCase().equals("all")) {
-                        for (Item item : actualLoot) {
+
 
                             if (user.getClasses() instanceof Healer) {
+
                                 if (user.getBackPack().getInventory().size() < 15) {
+                                        for (Item item : lootList) {
+                                            user.getBackPack().getInventory().add(item);
+                                            System.out.println("You have added " + item.getName() + " to your inventory");
+                                        }
+                                } else { System.out.println("Your backpack is full!"); }
+
+                            } else {
+                                if(user.getBackPack().getInventory().size() < 20) {
+
+                                    for (Item item : lootList) {
                                     user.getBackPack().getInventory().add(item);
-                                    actualLoot.remove(item);
                                     System.out.println("You have added " + item.getName() + " to your inventory");
-                                } else {
-                                    System.out.println("Your backpack is full!");
+                                    }
+                                } else {System.out.println("Your backpack is full!");}
+
+                            }
+
+
+                        lootList.clear();
+                        wishesToContinue = true;
+
+
+                    } else {
+                        if (lootList.stream().anyMatch(s -> s.getName().toLowerCase().replace(" ", "")
+                                .equals(input.toLowerCase().replace(" ", "")))) {
+                            Item item1 = new Sword();
+                            for (Item item : lootList) {
+                                if (item.getName().toLowerCase().replace(" ", "").equals(input.toLowerCase().replace(" ",""))) {
+                                    item1 = item;
+                                    if (user.getClasses() instanceof Healer) {
+                                        if (user.getBackPack().getInventory().size() < 15) {
+                                            user.getBackPack().getInventory().add(item1);
+                                            System.out.println("You have added " + item1.getName() + " to your inventory");
+
+                                        } else {
+                                            System.out.println("Your backpack is full!");
+                                        }
+                                    } else {
+                                        if (user.getBackPack().getInventory().size() < 20) {
+                                            user.getBackPack().getInventory().add(item1);
+                                            System.out.println("You have added " + item1.getName() + " to your inventory");
+
+                                        } else {
+                                            System.out.println("Your backpack is full!");
+                                        }
+                                    }
                                 }
-                            } else if (user.getBackPack().getInventory().size() < 20) {
-                                user.getBackPack().getInventory().add(item);
-                                actualLoot.remove(item);
-                                System.out.println("You have added " + item.getName() + " to your inventory");
-
-                            } else {
-                                System.out.println("Your backpack is full!");
                             }
+                            lootList.removeIf(s -> s.getName().toLowerCase().replace(" ", "")
+                                    .equals(input.toLowerCase().replace(" ", "")));
 
-                        }
-                    } else if (actualLoot.stream().anyMatch(s -> s.getName().equals(input))) {
-
-                        for (Item item : actualLoot) {
-                            if (item.getName().equals(input)) {
-                                item1 = item;
-                                actualLoot.remove(item);
-                            } else {
-                                System.out.println("There is no such item to loot");
-                            }
-                        }
-                        if (user.getClasses() instanceof Healer) {
-                            if (user.getBackPack().getInventory().size() < 15) {
-                                user.getBackPack().getInventory().add(item1);
-                                System.out.println("You have added " + item1.getName() + " to your inventory");
-                            } else {
-                                System.out.println("Your backpack is full!");
-                            }
-                        } else if (user.getBackPack().getInventory().size() < 20) {
-                            user.getBackPack().getInventory().add(item1);
-                            System.out.println("You have added " + item1.getName() + " to your inventory");
-
-                        } else {
-                            System.out.println("Your backpack is full!");
-                        }
-
+                        } else {System.out.println("There is no such item to loot");}
                     }
                 } else {
                     System.out.println("There was nothing to loot..");
                     wishesToContinue = true;
                 }
+
             }
         }
-    }
+
 
         private void attackUntilSomebodyDies (User user, Monsters monster){
             int cursingWordCounter = 0;

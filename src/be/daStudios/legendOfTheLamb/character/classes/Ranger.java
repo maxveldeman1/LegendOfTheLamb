@@ -5,6 +5,7 @@ import be.daStudios.legendOfTheLamb.items.armour.Armour;
 import be.daStudios.legendOfTheLamb.items.armour.LeatherArmour;
 import be.daStudios.legendOfTheLamb.items.packs.BackPack;
 import be.daStudios.legendOfTheLamb.items.packs.BackPacks;
+import be.daStudios.legendOfTheLamb.items.weapons.Bow;
 import be.daStudios.legendOfTheLamb.items.weapons.Sword;
 import be.daStudios.legendOfTheLamb.items.weapons.Weapon;
 
@@ -17,7 +18,7 @@ public class Ranger implements Classes, Serializable {
     private int dexterty = 2;
     private int constitution = 1;
     private Dices lifeDice = Dices.D8;
-    //    Bow Item = new Bow();
+    private Weapon bow = new Bow();
     private Armour leatherArmour = new LeatherArmour();
     private BackPack backPack = new BackPack();
     private int gold = 10;
@@ -90,9 +91,14 @@ public class Ranger implements Classes, Serializable {
         return null;
     }
 
-//    public Item getBow() {
-//        return bow;
-//    }
+    public Weapon getBow() {
+        return bow;
+    }
+
+    @Override
+    public Weapon getHolySymbol() {
+        return null;
+    }
 //
 
 
