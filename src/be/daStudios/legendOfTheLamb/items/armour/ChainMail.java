@@ -6,8 +6,6 @@ public class ChainMail implements Armour, Serializable  {
     private String description = "Many small rings make one big strong jacket.";
     int AC = 10;
     private String Penalty = "Sneaking, makes noise";
-    private String name = "ChainMail";
-
 
 
     public String getDescription() {
@@ -42,6 +40,6 @@ public class ChainMail implements Armour, Serializable  {
 
     @Override
     public String getName() {
-        return name;
+        return "ChainMail";
     }
 }

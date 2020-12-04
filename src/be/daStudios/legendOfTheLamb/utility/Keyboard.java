@@ -1,6 +1,5 @@
 package be.daStudios.legendOfTheLamb.utility;
 
-import java.io.Serializable;
 import java.util.Scanner;
 /**
  * Utility class for making a keyboard and asking for an input, but also checks it with Exception Handling if needed,

@@ -1,6 +1,5 @@
 package be.daStudios.legendOfTheLamb.rooms;
 
-import be.daStudios.legendOfTheLamb.monsters.Monsters;
 
 import java.io.Serializable;
 

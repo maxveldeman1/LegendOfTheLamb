@@ -6,8 +6,6 @@ public class Clothes implements Armour, Serializable {
     private String description = "A linen or woolen tunic that will rip with the slightest touch.";
     private int armourBase = 4;
     private int AC = 4;
-    private String name = "Clothes";
-
 
 
     public String getDescription() {
@@ -36,6 +34,6 @@ public class Clothes implements Armour, Serializable {
 
     @Override
     public String getName() {
-        return name;
+        return "Clothes";
     }
 }
